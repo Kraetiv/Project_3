@@ -7,9 +7,9 @@ import processing.core.PImage;
 abstract public class Entity{
    private String id;
    private Point position;
-   private List<PImage> images;
+   public List<PImage> images;
    private int imageIndex;
-   private int actionPeriod;
+   public int actionPeriod;
    private int animationPeriod;
 
    public Entity (String id, Point position,

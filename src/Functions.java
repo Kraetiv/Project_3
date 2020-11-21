@@ -52,6 +52,15 @@ final class Functions
    private static final int SGRASS_ROW = 3;
    private static final int SGRASS_ACTION_PERIOD = 4;
 
+   private static final String SHARK_KEY = "shark";
+   private static final int SHARK_NUM_PROPERTIES = 7;
+   private static final int SHARK_ID = 1;
+   private static final int SHARK_COL = 2;
+   private static final int SHARK_ROW = 3;
+   private static final int SHARK_LIMIT = 4;
+   private static final int SHARK_ACTION_PERIOD = 5;
+   private static final int SHARK_ANIMATION_PERIOD = 6;
+
    private static final String BGND_KEY = "background";
    private static final int BGND_NUM_PROPERTIES = 4;
    private static final int BGND_ID = 1;
@@ -188,6 +197,10 @@ final class Functions
             return parseAtlantis(properties, world, imageStore);
          case SGRASS_KEY:
             return parseSgrass(properties, world, imageStore);
+            case SHARK_KEY:
+               return parseShark(properties, world, imageStore);
+
+
          }
       }
 
@@ -232,6 +245,27 @@ final class Functions
 
       return properties.length == OCTO_NUM_PROPERTIES;
    }
+
+   public static boolean parseShark(String [] properties, WorldModel world,
+                                   ImageStore imageStore)
+   {
+      if (properties.length == SHARK_NUM_PROPERTIES)
+      {
+         Point pt = new Point(Integer.parseInt(properties[SHARK_COL]),
+                 Integer.parseInt(properties[SHARK_ROW]));
+         Entity entity = OctoNotFull.createOctoNotFull(properties[SHARK_ID],
+                 Integer.parseInt(properties[SHARK_LIMIT]),
+                 pt,
+                 Integer.parseInt(properties[SHARK_ACTION_PERIOD]),
+                 Integer.parseInt(properties[SHARK_ANIMATION_PERIOD]),
+                 getImageList(imageStore, SHARK_KEY));
+         world.tryAddEntity(entity);
+      }
+
+      return properties.length == SHARK_NUM_PROPERTIES;
+   }
+
+
 
    public static boolean parseObstacle(String [] properties, WorldModel world,
       ImageStore imageStore)

@@ -7,7 +7,7 @@ import processing.core.PImage;
 public class OctoNotFull extends Octo{
 
     private static final String SHARK_KEY = "shark";
-    private static final String SHARK_ID = "shark";
+    private static final int SHARK_ID = 1;
     private static final int SHARK_ACTION_PERIOD = 5;
     private static final int SHARK_ANIMATION_PERIOD = 6;
 
@@ -78,6 +78,12 @@ public class OctoNotFull extends Octo{
         Optional<Entity> notFullTarget = world.findNearest(this.getPosition(),
                 Fish.class);
 
+        Background cave = new Background("cave", Functions.getImageList(imageStore, "cave"));
+
+        if(world.getBackgroundCell(this.getPosition()).equals(cave)){
+            this.images = Functions.getImageList(imageStore, SHARK_KEY);
+            this.actionPeriod = this.getActionPeriod() / 2;
+        }
 
         if (!notFullTarget.isPresent() ||
                 !moveToNotFull(world, notFullTarget.get(), scheduler) ||

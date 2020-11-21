@@ -6,6 +6,11 @@ import processing.core.PImage;
 
 public class OctoFull extends Octo{
 
+    private static final String SHARK_KEY = "shark";
+    private static final int SHARK_ID = 1;
+    private static final int SHARK_ACTION_PERIOD = 5;
+    private static final int SHARK_ANIMATION_PERIOD = 6;
+
     public OctoFull(String id, Point position,
                     List<PImage> images, int resourceLimit, int resourceCount,
                     int actionPeriod, int animationPeriod)
@@ -25,6 +30,13 @@ public class OctoFull extends Octo{
     {
         Optional<Entity> fullTarget = world.findNearest(this.getPosition(),
                 Atlantis.class);
+
+        Background cave = new Background("cave", Functions.getImageList(imageStore, "cave"));
+
+        if(world.getBackgroundCell(this.getPosition()).equals(cave)){
+            this.images = Functions.getImageList(imageStore, SHARK_KEY);
+            this.actionPeriod = this.getActionPeriod() / 2;
+        }
 
         if (fullTarget.isPresent() &&
                 moveToFull(world, fullTarget.get(), scheduler))
