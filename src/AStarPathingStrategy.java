@@ -5,64 +5,95 @@ import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public class AStarPathingStrategy implements PathingStrategy{
+class AStarPathingStrategy
+        implements PathingStrategy
+{
 
-    public List<Point> computedPath(Point start, List<Point> path, Node result) {
-        while(result.getPos() != start){
-            path.add(result.getPos());
-            result = result.getPrev();
-            //System.out.println(path.size());
-        }
-        Collections.reverse(path);
-        //System.out.println(path.size());
-        return path;
-    }
 
-    public int heuristics(Point cur, Point end){return Point.distance(cur, end);}
-
-    public List<Point> computePath(Point start, Point end, Predicate<Point> canPassThrough,
+    public List<Point> computePath(Point start, Point end,
+                                   Predicate<Point> canPassThrough,
                                    BiPredicate<Point, Point> withinReach,
-                                   Function<Point, Stream<Point>> potentialNeighbors) {
+                                   Function<Point, Stream<Point>> potentialNeighbors)
+    {
+        Queue<Node> nxtNodeQ = new PriorityQueue<Node>(Comparator.comparingInt(Node::getF)
+                .thenComparing(Node::getG)); //Didn't use regular queue as it uses FIFO
+        List<Point> path = new ArrayList<>();
 
-        List<Point> computed = new ArrayList<>();
-        Queue<Node> open = new PriorityQueue<>(Comparator.comparingInt(Node::getF).thenComparing(Node :: getG));
-        Node starting = new Node(0, heuristics(start, end), heuristics(start, end), start, null);
-        Map<Point,Node> openedMap = new HashMap<Point, Node>();
-        Map<Point,Node> closedMap = new HashMap<Point, Node>();
-        open.add(starting);
-        Node cur;
+        Map<Point, Node> openLst = new HashMap<>();
+        Map<Point, Node> closedLst = new HashMap<>();
 
-        while(open.size() != 0){
-            cur = open.remove();
-            if(withinReach.test(cur.getPos(), end)){ //checking end and current position
-                return computedPath(start, computed, cur);
+        Node startNode = new Node(0, heuristic(start, end), heuristic(start, end), start, null);
+        nxtNodeQ.add(startNode);
+
+        while (!nxtNodeQ.isEmpty())
+        {
+            Node curNode = nxtNodeQ.poll(); //retrieves current node from queue
+
+            if (withinReach.test(curNode.getPos(), end))
+            {
+                return computedPath(curNode);
             }
-            List<Point> neighbors = potentialNeighbors.apply(cur.getPos())
+
+            //filter the neighbors and end in list
+            List<Point> neighbors = potentialNeighbors
+                    .apply(curNode.getPos())
+                    .filter(n -> !n.equals(start) && !n.equals(end)) //for testcase 4, had extra two pts, fix if not it
                     .filter(canPassThrough)
-                    .filter(x -> !x.equals(start) && !x.equals(end))
                     .collect(Collectors.toList());
 
-            for (Point neighbor : neighbors){
-                if(!closedMap.containsKey(neighbor)){
-                    int temp = cur.getG() + 1;
-                    if(openedMap.containsKey(neighbor) && temp < openedMap.get(neighbor).getG()){
-                        Node newNode = new Node(temp, heuristics(neighbor, end), heuristics(neighbor, end) + temp, neighbor, cur);
-                        open.add(newNode);
-                        open.remove(openedMap.get(neighbor));
-                        openedMap.replace(neighbor, newNode);
+            closedLst.put(curNode.getPos(), curNode);
 
+            for (Point n: neighbors)
+            {
+                if (!closedLst.containsKey(n))
+                {
+                    if(openLst.containsKey(n))
+                    {
+                        if( (curNode.getG() + 1) > openLst.get(n).getF())
+                        {
+                            Node betterNode = new Node(
+                                    (curNode.getG() + 1), heuristic(n, end),
+                                    heuristic(n, end), n, curNode
+                            );
+                            nxtNodeQ.add(betterNode);
+                            nxtNodeQ.remove(openLst.get(n));
+                            openLst.replace(n, betterNode);
+                        }
                     }
-                    else{
-                        Node newNeighbor = new Node(cur.getG(), heuristics(neighbor, end),
-                                cur.getF() + heuristics(neighbor,end), neighbor, cur);
-                        open.add(newNeighbor);
-                        openedMap.put(neighbor, newNeighbor);
+                    else {
+                        Node neighborNode = new Node(curNode.getG(), heuristic(n, end),
+                                curNode.getF() + heuristic(n, end), n, curNode);
+
+                        nxtNodeQ.add(neighborNode);
+                        openLst.put(n, neighborNode);
                     }
                 }
-                closedMap.put(cur.getPos(), cur);
             }
         }
-        return computed;
+        return path; //always return path array even if empty
+    }
+
+
+
+    public int heuristic(Point current, Point goal)
+    {
+        return Point.distance(current, goal); //basically euclidean/pythagorean distance
+    }
+
+    public List<Point> computedPath(Node n)
+    {
+        List<Point> result = new ArrayList<>();
+
+        while (n.getParent() != null)
+        {
+            result.add(n.getPos());
+            n = n.getParent();
+            System.out.println(result.size());
+        }
+
+        Collections.reverse(result);
+        System.out.println(result.size());
+        return result;
+
     }
 }
-
