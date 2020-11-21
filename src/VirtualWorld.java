@@ -1,3 +1,4 @@
+import java.awt.event.MouseEvent;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
@@ -73,6 +74,9 @@ public final class VirtualWorld
       scheduleActions(world, scheduler, imageStore);
 
       next_time = System.currentTimeMillis() + TIMER_ACTION_PERIOD;
+
+      //triggers mouse event
+//      registerMethod("mouseEvent", this);
    }
 
    public void draw()
@@ -111,6 +115,23 @@ public final class VirtualWorld
          }
          this.view.shiftView(dx, dy);
       }
+   }
+
+   public void mouseEvent(processing.event.MouseEvent newEvent) // for our new entity, creates event
+   {
+      if(newEvent.getAction() == processing.event.MouseEvent.PRESS)
+      {
+         int x = newEvent.getX()/ TILE_WIDTH;
+         int y = newEvent.getY()/ TILE_HEIGHT;
+
+         Turtle.createTurtle("Turtle", new Point(newEvent.getX(), newEvent.getY()),
+                 5, 0, Functions.getImageList(imageStore,"turtle.bmp") );
+
+         view.newCaveDrawn(x, y, imageStore);
+
+         Point cave = new Point(x +50, y + 50);
+      }
+
    }
 
    public static Background createDefaultBackground(ImageStore imageStore)

@@ -1,6 +1,7 @@
 import processing.core.PApplet;
 import processing.core.PImage;
 
+import java.util.List;
 import java.util.Optional;
 
 /*
@@ -70,6 +71,24 @@ final class WorldView
                     viewPoint.x * this.tileWidth, viewPoint.y * this.tileHeight);
          }
       }
+   }
+
+   public void newCaveDrawn(int x, int y, ImageStore imageStore)
+   {
+      List<PImage> imageList = Functions.getImageList(imageStore,"cave");
+
+      world.drawCave(x, y, viewport, imageList);
+//      world.drawCave(x+1, y, viewport, imageList);
+//      world.drawCave(x-1, y, viewport, imageList);
+//      world.drawCave(x, y+1, viewport, imageList);
+//      world.drawCave(x, y-1, viewport, imageList);
+//      world.drawCave(x+1, y+1, viewport, imageList);
+//      world.drawCave(x-1, y+1, viewport, imageList);
+//      world.drawCave(x+1, y-1, viewport, imageList);
+//      world.drawCave(x-1, y-1, viewport, imageList);
+
+      drawEntities();
+      //System.out.println(" my name is jeff");
    }
 
    public void drawViewport()

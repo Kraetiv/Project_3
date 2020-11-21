@@ -57,7 +57,7 @@ public class Shark extends Octo {
         }
         else
         {
-            Point nextPos = this.nextPosition(world, target.getPosition());
+            Point nextPos = this.nextPosition(world, target.getPosition()); //changed this, dont know if correct
 
             if (!this.getPosition().equals(nextPos))
             {

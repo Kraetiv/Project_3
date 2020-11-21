@@ -57,7 +57,7 @@ public class OctoNotFull extends Octo{
         }
         else
         {
-            Point nextPos = this.nextPosition(world, target.getPosition());
+            Point nextPos = this.nextPositionOcto(world, target.getPosition());
 
             if (!this.getPosition().equals(nextPos))
             {

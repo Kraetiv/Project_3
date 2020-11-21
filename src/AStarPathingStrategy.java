@@ -88,11 +88,11 @@ class AStarPathingStrategy
         {
             result.add(n.getPos());
             n = n.getParent();
-            System.out.println(result.size());
+//            System.out.println(result.size());
         }
 
         Collections.reverse(result);
-        System.out.println(result.size());
+//        System.out.println(result.size());
         return result;
 
     }
