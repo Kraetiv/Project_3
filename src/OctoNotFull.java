@@ -6,6 +6,11 @@ import processing.core.PImage;
 
 public class OctoNotFull extends Octo{
 
+    private static final String SHARK_KEY = "shark";
+    private static final String SHARK_ID = "shark";
+    private static final int SHARK_ACTION_PERIOD = 5;
+    private static final int SHARK_ANIMATION_PERIOD = 6;
+
     public OctoNotFull(String id, Point position,
                        List<PImage> images, int resourceLimit, int resourceCount,
                        int actionPeriod, int animationPeriod)
