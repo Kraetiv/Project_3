@@ -78,6 +78,7 @@ public class OctoNotFull extends Octo{
         Optional<Entity> notFullTarget = world.findNearest(this.getPosition(),
                 Fish.class);
 
+
         if (!notFullTarget.isPresent() ||
                 !moveToNotFull(world, notFullTarget.get(), scheduler) ||
                 !transformNotFull(world, scheduler, imageStore))
