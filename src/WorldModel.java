@@ -182,6 +182,7 @@ final class WorldModel
       if (isOccupied(entity.getPosition())) {
          // arguably the wrong type of exception, but we are not
          // defining our own exceptions yet
+         System.out.println("its not spawning correctly!");
          throw new IllegalArgumentException("position occupied");
       }
 
