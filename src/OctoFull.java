@@ -38,7 +38,7 @@ public class OctoFull extends Octo{
             //System.out.println("hi");
             //transformShark(world, scheduler, imageStore);
             setImages(Functions.getImageList(imageStore,"shark"));
-            this.actionPeriod = this.actionPeriod / 5;
+            this.actionPeriod = this.actionPeriod / 10;
             this.resourceLimit = 10000;
         }
 
