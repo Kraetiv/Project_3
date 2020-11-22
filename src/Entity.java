@@ -10,7 +10,7 @@ abstract public class Entity{
    public List<PImage> images;
    private int imageIndex;
    public int actionPeriod;
-   private int animationPeriod;
+   public int animationPeriod;
 
    public Entity (String id, Point position,
                   List<PImage> images, int resourceLimit, int resourceCount, int actionPeriod, int animationPeriod){

@@ -7,9 +7,15 @@ import processing.core.PImage;
 public class OctoNotFull extends Octo{
 
     private static final String SHARK_KEY = "shark";
+    private static final int SHARK_NUM_PROPERTIES = 7;
     private static final int SHARK_ID = 1;
+    private static final int SHARK_COL = 2;
+    private static final int SHARK_ROW = 3;
+    private static final int SHARK_LIMIT = 4;
     private static final int SHARK_ACTION_PERIOD = 5;
     private static final int SHARK_ANIMATION_PERIOD = 6;
+
+
 
     public OctoNotFull(String id, Point position,
                        List<PImage> images, int resourceLimit, int resourceCount,
@@ -79,10 +85,8 @@ public class OctoNotFull extends Octo{
                 Fish.class);
 
         Background cave = new Background("cave", Functions.getImageList(imageStore, "cave"));
-
-        if(world.getBackgroundCell(this.getPosition()).equals(cave) && true){
-            setImages(Functions.getImageList(imageStore, SHARK_KEY));
-            this.actionPeriod = this.actionPeriod / 5;
+        if(world.getBackgroundCell(this.getPosition()).equals(cave)){
+            this.transformShark(world, scheduler, imageStore);;
         }
 
         if (!notFullTarget.isPresent() ||
@@ -93,6 +97,17 @@ public class OctoNotFull extends Octo{
                     Activities.createActivityAction(this, world, imageStore),
                     this.getActionPeriod());
         }
+    }
+
+    public void transformShark(WorldModel world, EventScheduler scheduler, ImageStore imageStore){
+        Shark shark = new Shark(SHARK_KEY, getPosition(),
+                Functions.getImageList(imageStore, "shark") , resourceLimit, resourceCount, actionPeriod / 5, animationPeriod);
+
+        world.removeEntity(this);
+        scheduler.unscheduleAllEvents(this);
+
+        world.addEntity(shark);
+        shark.scheduleActions(scheduler, world, imageStore);
     }
 
     public void setImages(List<PImage> image){

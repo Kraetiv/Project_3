@@ -76,8 +76,6 @@ final class WorldView
    public void drawNewEntities(int x, int y, ImageStore imageStore)
    {
       List<PImage> caveImage = Functions.getImageList(imageStore,"cave");
-      List<PImage> imageList2 = Functions.getImageList(imageStore,"turtle");
-      //List<PImage> sharkImage = Functions.getImageList(imageStore,"shark");
 
 
 //      world.drawCave(0, 10, viewport, imageList); //fix this spawn

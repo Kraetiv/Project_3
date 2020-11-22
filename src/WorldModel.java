@@ -216,11 +216,11 @@ final class WorldModel
 
    public void createCave(int x, int y, Viewport view, List<PImage> imageList)
    {
-      Point caveEntity = view.viewportToWorld(x, y);
+      Point cavePoint = view.viewportToWorld(x, y);
 
-      if(withinBounds(caveEntity))
+      if(withinBounds(cavePoint))
       {
-         setBackgroundCell(caveEntity, new Background("cave", imageList));
+         setBackgroundCell(cavePoint, new Background("cave", imageList));
       }
    }
 

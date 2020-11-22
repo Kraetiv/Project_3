@@ -15,7 +15,7 @@ public class Shark extends Octo {
     private static final int OCTO_ANIMATION_PERIOD = 6;
 
     private static final String SHARK_KEY = "shark";
-    private static final String SHARK_ID = "shark";
+    private static final String SHARK_ID = "1";
     private static final int SHARK_ACTION_PERIOD = 5;
     private static final int SHARK_ANIMATION_PERIOD = 6;
 

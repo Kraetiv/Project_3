@@ -1,4 +1,6 @@
 import java.util.List;
+import java.util.Objects;
+
 import processing.core.PImage;
 
 final class Background {
@@ -20,4 +22,15 @@ final class Background {
          return ((Entity) entity).getImages().get(((Entity) entity).getImageIndex());
       }
    }
+
+   public boolean equals(Object o)
+   {
+      if (this == o) return true;
+      if (o == null || getClass() != o.getClass()) return false;
+
+      Background that = (Background) o;
+
+      return Objects.equals(id, that.id);
+   }
+
 }

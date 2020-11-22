@@ -34,8 +34,7 @@ public class OctoFull extends Octo{
         Background cave = new Background("cave", Functions.getImageList(imageStore, "cave"));
 
         if(world.getBackgroundCell(this.getPosition()).equals(cave)){
-            setImages(Functions.getImageList(imageStore, SHARK_KEY));
-            this.actionPeriod = this.actionPeriod / 5;
+            this.transformShark(world, scheduler, imageStore);
         }
 
         if (fullTarget.isPresent() &&
@@ -91,6 +90,17 @@ public class OctoFull extends Octo{
             }
             return false;
         }
+    }
+
+    public void transformShark(WorldModel world, EventScheduler scheduler, ImageStore imageStore){
+        Shark shark = new Shark(SHARK_KEY, getPosition(),
+                Functions.getImageList(imageStore, "shark") , resourceLimit, resourceCount, actionPeriod / 5, animationPeriod);
+
+        world.removeEntity(this);
+        scheduler.unscheduleAllEvents(this);
+
+        world.addEntity(shark);
+        shark.scheduleActions(scheduler, world, imageStore);
     }
 
     public void setImages(List<PImage> image){

@@ -125,14 +125,11 @@ public final class VirtualWorld
          int y = newEvent.getY()/ TILE_HEIGHT;
 
          Turtle turtle = new Turtle("turtle", new Point(mouseX, mouseY),
-                 Functions.getImageList(imageStore,"turtle"), 1, 6);
+                 Functions.getImageList(imageStore,"turtle"), 5, 6);
          world.addEntity(turtle);
          turtle.scheduleActions(scheduler, world, imageStore);
 
-         view.drawNewEntities(x, y, imageStore);
-
-         Point cave = new Point(x + 10, y + 10);
-         Point newTurt = new Point(x + 10, y + 10);
+         view.drawCave(x, y, imageStore);
       }
 
    }
