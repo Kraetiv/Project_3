@@ -30,6 +30,10 @@ public class Activities extends Action{
             ((Crab) this.entity).execute(this.world,
                     this.imageStore, scheduler);
         }
+        if(this.entity instanceof Turtle){
+            ((Turtle) this.entity).execute(this.world,
+                    this.imageStore, scheduler);
+        }
         if(this.entity instanceof Quake) {
 
             ((Quake) this.entity).execute(this.world,

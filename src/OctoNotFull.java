@@ -16,7 +16,6 @@ public class OctoNotFull extends Octo{
     private static final int SHARK_ANIMATION_PERIOD = 6;
 
 
-
     public OctoNotFull(String id, Point position,
                        List<PImage> images, int resourceLimit, int resourceCount,
                        int actionPeriod, int animationPeriod)
@@ -86,7 +85,11 @@ public class OctoNotFull extends Octo{
 
         Background cave = new Background("cave", Functions.getImageList(imageStore, "cave"));
         if(world.getBackgroundCell(this.getPosition()).equals(cave)){
-            this.transformShark(world, scheduler, imageStore);;
+            //System.out.println("hi");
+            //transformShark(world, scheduler, imageStore);
+            setImages(Functions.getImageList(imageStore, "shark"));
+            this.actionPeriod = this.actionPeriod / 5;
+            this.resourceLimit = 10000;
         }
 
         if (!notFullTarget.isPresent() ||
@@ -100,14 +103,17 @@ public class OctoNotFull extends Octo{
     }
 
     public void transformShark(WorldModel world, EventScheduler scheduler, ImageStore imageStore){
-        Shark shark = new Shark(SHARK_KEY, getPosition(),
-                Functions.getImageList(imageStore, "shark") , resourceLimit, resourceCount, actionPeriod / 5, animationPeriod);
-
+        //Point pos = this.getPosition();
+        //Entity shark = new Shark(SHARK_KEY, pos,
+                //Functions.getImageList(imageStore, "shark") , 1000, resourceCount, actionPeriod / 5, 0);
+        OctoNotFull octo = OctoNotFull.createOctoNotFull(this.getID(),
+                1000, this.getPosition(), this.getActionPeriod() / 5, this.getAnimationPeriod(),
+                Functions.getImageList(imageStore, "shark"));
         world.removeEntity(this);
         scheduler.unscheduleAllEvents(this);
 
-        world.addEntity(shark);
-        shark.scheduleActions(scheduler, world, imageStore);
+        world.addEntity(octo);
+        octo.scheduleActions(scheduler, world, imageStore);
     }
 
     public void setImages(List<PImage> image){

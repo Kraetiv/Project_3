@@ -28,7 +28,7 @@ public class Shark extends Octo {
 
     public boolean transformNotFull(WorldModel world, EventScheduler scheduler, ImageStore imageStore)
     {
-        if (this.getResourceCount() >= this.getResourceLimit())
+        if (this.getResourceCount() >= 1000)
         {
             Entity octo = OctoFull.createOctoFull(this.getID(), this.getResourceLimit(), this.getPosition(),
                     this.getActionPeriod(), this.getAnimationPeriod(), this.getImages());
@@ -87,6 +87,4 @@ public class Shark extends Octo {
                     this.getActionPeriod());
         }
     }
-
-
 }

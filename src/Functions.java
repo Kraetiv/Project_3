@@ -58,7 +58,7 @@ final class Functions
    private static final int SHARK_COL = 2;
    private static final int SHARK_ROW = 3;
    private static final int SHARK_LIMIT = 4;
-   private static final int SHARK_ACTION_PERIOD = 5;
+   private static final int SHARK_ACTION_PERIOD = 5 / 2;
    private static final int SHARK_ANIMATION_PERIOD = 6;
 
    private static final String TURTLE_KEY = "turtle";
