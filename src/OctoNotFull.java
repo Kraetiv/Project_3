@@ -80,9 +80,9 @@ public class OctoNotFull extends Octo{
 
         Background cave = new Background("cave", Functions.getImageList(imageStore, "cave"));
 
-        if(world.getBackgroundCell(this.getPosition()).equals(cave)){
-            this.images = Functions.getImageList(imageStore, SHARK_KEY);
-            this.actionPeriod = this.getActionPeriod() / 2;
+        if(world.getBackgroundCell(this.getPosition()).equals(cave) && true){
+            setImages(Functions.getImageList(imageStore, SHARK_KEY));
+            this.actionPeriod = this.actionPeriod / 5;
         }
 
         if (!notFullTarget.isPresent() ||
@@ -94,4 +94,9 @@ public class OctoNotFull extends Octo{
                     this.getActionPeriod());
         }
     }
+
+    public void setImages(List<PImage> image){
+        this.images = image;
+    }
+
 }

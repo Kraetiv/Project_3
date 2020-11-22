@@ -33,9 +33,9 @@ public class OctoFull extends Octo{
 
         Background cave = new Background("cave", Functions.getImageList(imageStore, "cave"));
 
-        if(world.getBackgroundCell(this.getPosition()).equals(cave)){
-            this.images = Functions.getImageList(imageStore, SHARK_KEY);
-            this.actionPeriod = this.getActionPeriod() / 2;
+        if(world.getBackgroundCell(this.getPosition()).equals(cave) && true){
+            setImages(Functions.getImageList(imageStore, SHARK_KEY));
+            this.actionPeriod = this.actionPeriod / 5;
         }
 
         if (fullTarget.isPresent() &&
@@ -92,4 +92,9 @@ public class OctoFull extends Octo{
             return false;
         }
     }
+
+    public void setImages(List<PImage> image){
+        this.images = image;
+    }
+
 }
