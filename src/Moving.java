@@ -18,7 +18,7 @@ public class Moving extends Actions{
     {
         SingleStepPathingStrategy single = new SingleStepPathingStrategy();
 
-        AStarPathingStrategy aStar = new AStarPathingStrategy();
+//        AStarPathingStrategy aStar = new AStarPathingStrategy();
 
         List<Point> strat = single.computePath(this.getPosition(),
                 p,

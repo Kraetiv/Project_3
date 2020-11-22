@@ -16,8 +16,8 @@ public final class VirtualWorld
 {
    private static final int TIMER_ACTION_PERIOD = 100;
 
-   private static final int VIEW_WIDTH = 640;
-   private static final int VIEW_HEIGHT = 480;
+   private static final int VIEW_WIDTH = 1280;
+   private static final int VIEW_HEIGHT = 1280;
    private static final int TILE_WIDTH = 32;
    private static final int TILE_HEIGHT = 32;
    private static final int WORLD_WIDTH_SCALE = 2;
@@ -124,9 +124,10 @@ public final class VirtualWorld
          int x = newEvent.getX()/ TILE_WIDTH;
          int y = newEvent.getY()/ TILE_HEIGHT;
 
-         Turtle.createTurtle("turtle", new Point(newEvent.getX(), newEvent.getY()),
+         Turtle.createTurtle("Turtle", new Point(newEvent.getX(), newEvent.getY()),
                  5, 0, Functions.getImageList(imageStore,"turtle.bmp") );
 
+         view.drawCave(0, 0, imageStore);
          view.drawNewEntities(x, y, imageStore);
 
          Point cave = new Point(x + 10, y + 10);

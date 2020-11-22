@@ -45,6 +45,11 @@ public class Activities extends Action{
             ((SGrass) this.entity).execute(this.world,
                     this.imageStore, scheduler);
         }
+        if(this.entity instanceof Shark) //new add
+        {
+            ((Shark) this.entity).execute(this.world,
+                    this.imageStore, scheduler);
+        }
     }
 
 }

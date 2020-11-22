@@ -77,19 +77,33 @@ final class WorldView
    {
       List<PImage> imageList = Functions.getImageList(imageStore,"cave");
       List<PImage> imageList2 = Functions.getImageList(imageStore,"turtle");
-     // List<PImage> sharkImage = Functions.getImageList(imageStore,"shark");
+      List<PImage> sharkImage = Functions.getImageList(imageStore,"shark");
 
 
-      world.drawCave(x, y, viewport, imageList);
-      world.drawTurtles(x+1, y, viewport, imageList2);
-      world.drawTurtles(x-1, y, viewport, imageList2);
-      world.drawTurtles(x, y+1, viewport, imageList2);
-      world.drawTurtles(x, y-1, viewport, imageList2);
-      //world.drawShark(x, y, viewport, sharkImage);
+//      world.drawCave(0, 10, viewport, imageList); //fix this spawn
+
+//      world.drawTurtles(x+1, y, viewport, imageList2); //draws turtles whereever mouse cliked, maybe change
+//      world.drawTurtles(x-1, y, viewport, imageList2);
+//      world.drawTurtles(x, y+1, viewport, imageList2);
+//      world.drawTurtles(x, y-1, viewport, imageList2);
+//      world.drawTurtles(x+1, y+1, viewport, imageList2);
+//      world.drawTurtles(x-1, y+1, viewport, imageList2);
+//      world.drawTurtles(x+1, y-1, viewport, imageList2);
+//      world.drawTurtles(x-1, y-1, viewport, imageList2);
+
+      world.drawShark(x, y, viewport, sharkImage); //draw shark on mouse click
 
       drawEntities();
       //System.out.println(" my name is jeff");
    }
+
+   public void drawCave(int x, int y, ImageStore imageStore)
+   {
+      List<PImage> imageList = Functions.getImageList(imageStore,"cave");
+
+      world.createCave(x, y, viewport, imageList);
+   }
+
 
    public void drawViewport()
    {

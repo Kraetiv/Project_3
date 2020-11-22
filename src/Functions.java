@@ -61,15 +61,6 @@ final class Functions
    private static final int SHARK_ACTION_PERIOD = 5;
    private static final int SHARK_ANIMATION_PERIOD = 6;
 
-   private static final String TURTLE_KEY = "turtle";
-   private static final int TURTLE_NUM_PROPERTIES = 5;
-   private static final int TURTLE_ID = 1;
-   private static final int TURTLE_COL = 2;
-   private static final int TURTLE_ROW = 3;
-   private static final int TURTLE_LIMIT = 4;
-   private static final int TURTLE_ACTION_PERIOD = 5;
-   private static final int TURTLE_ANIMATION_PERIOD = 6;
-
    private static final String BGND_KEY = "background";
    private static final int BGND_NUM_PROPERTIES = 4;
    private static final int BGND_ID = 1;
@@ -208,8 +199,6 @@ final class Functions
             return parseSgrass(properties, world, imageStore);
             case SHARK_KEY:
                return parseShark(properties, world, imageStore);
-            case TURTLE_KEY:
-               return parseTurtle(properties, world, imageStore);
 
 
          }
@@ -276,21 +265,7 @@ final class Functions
       return properties.length == SHARK_NUM_PROPERTIES;
    }
 
-   public static boolean parseTurtle(String [] properties, WorldModel world,
-                                       ImageStore imageStore)
-   {
-      if (properties.length == TURTLE_NUM_PROPERTIES)
-      {
-         Point pt = new Point(
-                 Integer.parseInt(properties[TURTLE_COL]),
-                 Integer.parseInt(properties[TURTLE_ROW]));
-         Entity entity = Obstacle.createObstacle(properties[TURTLE_ID],
-                 pt, getImageList(imageStore, TURTLE_KEY));
-         world.tryAddEntity(entity);
-      }
 
-      return properties.length == TURTLE_NUM_PROPERTIES;
-   }
 
    public static boolean parseObstacle(String [] properties, WorldModel world,
       ImageStore imageStore)

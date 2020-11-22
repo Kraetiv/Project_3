@@ -46,5 +46,13 @@ final class Point
       int dy = p1.y - p2.y;
       return dx * dx + dy * dy;
    }
+
+   public int getX() {
+      return x;
+   }
+
+   public int getY() {
+      return y;
+   }
 }
 
