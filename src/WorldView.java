@@ -76,16 +76,17 @@ final class WorldView
    public void newCaveDrawn(int x, int y, ImageStore imageStore)
    {
       List<PImage> imageList = Functions.getImageList(imageStore,"cave");
+      List<PImage> imageList2 = Functions.getImageList(imageStore,"turtle");
 
       world.drawCave(x, y, viewport, imageList);
-//      world.drawCave(x+1, y, viewport, imageList);
-//      world.drawCave(x-1, y, viewport, imageList);
-//      world.drawCave(x, y+1, viewport, imageList);
-//      world.drawCave(x, y-1, viewport, imageList);
-//      world.drawCave(x+1, y+1, viewport, imageList);
-//      world.drawCave(x-1, y+1, viewport, imageList);
-//      world.drawCave(x+1, y-1, viewport, imageList);
-//      world.drawCave(x-1, y-1, viewport, imageList);
+      world.drawTurtles(x+1, y, viewport, imageList2);
+      world.drawTurtles(x-1, y, viewport, imageList2);
+      world.drawTurtles(x, y+1, viewport, imageList2);
+      world.drawTurtles(x, y-1, viewport, imageList2);
+      world.drawTurtles(x+1, y+1, viewport, imageList2);
+      world.drawTurtles(x-1, y+1, viewport, imageList2);
+      world.drawTurtles(x+1, y-1, viewport, imageList2);
+      world.drawTurtles(x-1, y-1, viewport, imageList2);
 
       drawEntities();
       //System.out.println(" my name is jeff");

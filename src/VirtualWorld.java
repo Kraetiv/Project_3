@@ -76,7 +76,7 @@ public final class VirtualWorld
       next_time = System.currentTimeMillis() + TIMER_ACTION_PERIOD;
 
       //triggers mouse event
-//      registerMethod("mouseEvent", this);
+      registerMethod("mouseEvent", this);
    }
 
    public void draw()
@@ -129,7 +129,8 @@ public final class VirtualWorld
 
          view.newCaveDrawn(x, y, imageStore);
 
-         Point cave = new Point(x +50, y + 50);
+         Point cave = new Point(x + 10, y + 10);
+         Point newTurt = new Point(x + 10, y + 10);
       }
 
    }

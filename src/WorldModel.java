@@ -223,4 +223,16 @@ final class WorldModel
          setBackgroundCell(caveEntity, new Background("cave", imageList));
       }
    }
+
+   public void drawTurtles(int x, int y, Viewport view, List<PImage> imageList)
+   {
+      Point turt = view.viewportToWorld(x, y);
+
+      if(withinBounds(turt))
+      {
+         setBackgroundCell(turt, new Background("Turtle", imageList));
+      }
+   }
+
+
 }

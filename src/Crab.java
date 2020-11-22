@@ -29,8 +29,6 @@ public class Crab extends Moving{
     Point nextPositionCrab(WorldModel world, Point destPos)
     {
 
-//        SingleStepPathingStrategy single = new SingleStepPathingStrategy();
-
         AStarPathingStrategy astar = new AStarPathingStrategy();
 
 
@@ -44,8 +42,7 @@ public class Crab extends Moving{
 //        };
 
         List<Point> strat = astar.computePath(this.getPosition(),
-                destPos,
-                x -> !world.isOccupied(x) && world.withinBounds(x),
+                destPos, x -> !world.isOccupied(x) && world.withinBounds(x),
                 Point::adjacent,
                 PathingStrategy.CARDINAL_NEIGHBORS
         );
