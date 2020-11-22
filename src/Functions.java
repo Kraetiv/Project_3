@@ -276,7 +276,7 @@ final class Functions
       return properties.length == SHARK_NUM_PROPERTIES;
    }
 
-   public static boolean parseTurtle(String [] properties, WorldModel world,
+   public static boolean parseTurtle(String [] properties, WorldModel world, // update turtle
                                        ImageStore imageStore)
    {
       if (properties.length == TURTLE_NUM_PROPERTIES)
@@ -284,8 +284,9 @@ final class Functions
          Point pt = new Point(
                  Integer.parseInt(properties[TURTLE_COL]),
                  Integer.parseInt(properties[TURTLE_ROW]));
-         Entity entity = Obstacle.createObstacle(properties[TURTLE_ID],
-                 pt, getImageList(imageStore, TURTLE_KEY));
+         Entity entity = Turtle.createTurtle(properties[TURTLE_ID],
+                 pt, TURTLE_ACTION_PERIOD, TURTLE_ANIMATION_PERIOD,
+                 getImageList(imageStore, TURTLE_KEY));
          world.tryAddEntity(entity);
       }
 
