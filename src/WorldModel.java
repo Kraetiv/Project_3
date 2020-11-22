@@ -220,11 +220,11 @@ final class WorldModel
 
       if(withinBounds(caveEntity))
       {
-         setBackground(caveEntity, new Background("cave", imageList));
+         setBackgroundCell(caveEntity, new Background("cave", imageList));
       }
    }
 
-   public void drawTurtles(int x, int y, Viewport view, List<PImage> imageList)
+   public void createTurtles(int x, int y, Viewport view, List<PImage> imageList)
    {
       Point turt = view.viewportToWorld(x, y);
 
@@ -234,7 +234,7 @@ final class WorldModel
       }
    }
 
-   public void drawShark(int x, int y, Viewport view, List<PImage> imageList)
+   public void createShark(int x, int y, Viewport view, List<PImage> imageList)
    {
       Point shark = view.viewportToWorld(x, y);
 
