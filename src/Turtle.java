@@ -76,6 +76,7 @@ public class Turtle extends Moving{
 
     public void execute(WorldModel world, ImageStore imageStore, EventScheduler scheduler)
     {
+        //find nearest Sgrass
         Optional<Entity> TurtleTarget = world.findNearest(this.getPosition(), SGrass.class);
         long nextPeriod = this.getActionPeriod();
 
@@ -87,7 +88,8 @@ public class Turtle extends Moving{
             {
                 Entity quake = Quake.createQuake(tgtPos,
                         Functions.getImageList(imageStore, QUAKE_KEY));
-
+//                world.removeEntity(TurtleTarget.get());
+//                scheduler.unscheduleAllEvents(TurtleTarget.get());
                 world.addEntity(quake);
                 nextPeriod += this.getActionPeriod();
                 ((Quake)quake).scheduleActions(scheduler, world, imageStore);
