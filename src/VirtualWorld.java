@@ -127,7 +127,8 @@ public final class VirtualWorld
          Turtle.createTurtle("Turtle", new Point(newEvent.getX(), newEvent.getY()),
                  5, 0, Functions.getImageList(imageStore,"turtle.bmp") );
 
-         view.newCaveDrawn(x, y, imageStore);
+
+         view.drawNewEntities(x, y, imageStore);
 
          Point cave = new Point(x + 10, y + 10);
          Point newTurt = new Point(x + 10, y + 10);
