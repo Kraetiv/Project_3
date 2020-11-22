@@ -124,9 +124,8 @@ public final class VirtualWorld
          int x = newEvent.getX()/ TILE_WIDTH;
          int y = newEvent.getY()/ TILE_HEIGHT;
 
-         Turtle.createTurtle("Turtle", new Point(newEvent.getX(), newEvent.getY()),
+         Turtle.createTurtle("turtle", new Point(newEvent.getX(), newEvent.getY()),
                  5, 0, Functions.getImageList(imageStore,"turtle.bmp") );
-
 
          view.drawNewEntities(x, y, imageStore);
 
