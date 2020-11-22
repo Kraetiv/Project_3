@@ -80,7 +80,7 @@ final class WorldView
       List<PImage> sharkImage = Functions.getImageList(imageStore,"shark");
 
 
-//      world.drawCave(0, 10, viewport, imageList); //fix this spawn
+      world.createCave(0, 10, viewport, imageList); //fix this spawn
 
 //      world.drawTurtles(x+1, y, viewport, imageList2); //draws turtles whereever mouse cliked, maybe change
 //      world.drawTurtles(x-1, y, viewport, imageList2);
