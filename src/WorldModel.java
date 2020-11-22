@@ -233,16 +233,4 @@ final class WorldModel
          setBackgroundCell(turt, new Background("turtle", imageList));
       }
    }
-
-   public void createShark(int x, int y, Viewport view, List<PImage> imageList)
-   {
-      Point shark = view.viewportToWorld(x, y);
-
-      if(withinBounds(shark))
-      {
-         setBackgroundCell(shark, new Background("shark", imageList));
-      }
-   }
-
-
 }
