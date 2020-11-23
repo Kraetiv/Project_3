@@ -15,8 +15,8 @@ public class Turtle extends Moving
     private static final int TURTLE_COL = 2;
     private static final int TURTLE_ROW = 3;
     private static final int TURTLE_LIMIT = 4;
-    private static final int TURTLE_ACTION_PERIOD = 1;
-    private static final int TURTLE_ANIMATION_PERIOD = 1;
+    private static final int TURTLE_ACTION_PERIOD = 10;
+    private static final int TURTLE_ANIMATION_PERIOD = 10;
 
 
     public Turtle(String id, Point position, List<PImage> images,
