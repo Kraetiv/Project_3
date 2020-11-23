@@ -1,0 +1,12 @@
+Bill Chan:
+- worked on implementing A*/Single-step pathing to entities
+- mouse event that spawns the new mobile entity
+- "world changing" event triggered by mouse click which modifies background image of affected tiles
+
+Alex Liang:
+
+
+Event Trigger:
+Click anywhere on the window to spawn an array for caves. Doing so will spawn a ________ entity that will ______________. 
+
+
