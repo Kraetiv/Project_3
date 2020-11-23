@@ -185,7 +185,7 @@ final class WorldModel
          System.out.println("its not spawning correctly!");
          throw new IllegalArgumentException("position occupied");
       }
-      System.out.println(" Supposed to spawn!");
+//      System.out.println(" Supposed to spawn!");
       this.addEntity(entity);
    }
 
