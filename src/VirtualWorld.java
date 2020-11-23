@@ -76,7 +76,7 @@ public final class VirtualWorld
 
       cc = CursorChar.createCursor("cursor", new Point(0,0), -6, -6,
               Functions.getImageList(imageStore,"cursor"));
-      cc.spawn(new Point(1, 1), world, scheduler, imageStore);
+      //cc.spawn(new Point(1, 1), world, scheduler, imageStore);
 
       next_time = System.currentTimeMillis() + TIMER_ACTION_PERIOD;
 
@@ -168,6 +168,7 @@ public final class VirtualWorld
                  0, 0, Functions.getImageList(imageStore,"turtle") );
 
          turtle.spawn(pressed, world, scheduler, imageStore);
+         world.addEntity(cc);
 
 //         Turtle turtle = new Turtle("turtle", new Point(mouseX, mouseY),
 //                 Functions.getImageList(imageStore,"turtle"), 5, 6);
