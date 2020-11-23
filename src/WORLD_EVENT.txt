@@ -5,6 +5,7 @@ Bill:
 - mouse event that spawns the new mobile entity
 - "world changing" event triggered by mouse click which modifies background image of affected tiles
 - modifying textures/bmp files
+- adding submarine
 
 Alex:
 - creating turtle class
