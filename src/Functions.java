@@ -67,8 +67,8 @@ final class Functions
    private static final int TURTLE_COL = 2;
    private static final int TURTLE_ROW = 3;
    private static final int TURTLE_LIMIT = 4;
-   private static final int TURTLE_ACTION_PERIOD = 5;
-   private static final int TURTLE_ANIMATION_PERIOD = 6;
+   private static final int TURTLE_ACTION_PERIOD = 1;
+   private static final int TURTLE_ANIMATION_PERIOD = 1;
 
    private static final String BGND_KEY = "background";
    private static final int BGND_NUM_PROPERTIES = 4;
