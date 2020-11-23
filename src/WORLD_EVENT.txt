@@ -5,16 +5,16 @@ Bill:
 - mouse event that spawns the new mobile entity
 - "world changing" event triggered by mouse click which modifies background image of affected tiles
 - modifying textures/bmp files
-- adding submarine
+- adding submarine which moves with arrow keys
 
 Alex:
 - creating turtle class
 - modifying octo class so that it changes into shark when passing through a cave
 - spawning/changing cave background
 - modifying textures/bmp files
-- adding submarine
+- adding submarine which moves with arrow keys
 
 1. When the user clicks on the screen, it spawns a cave background on the mouseclick (can repeat this action).
 2. The click also spawns a turtle entity that eats bacon.
 3. If an octopus enters the cave, it turns into a shark that swims faster and eats more fish.
-4. Pressing arrow keys gets the submarine to spawn in.
+4. Pressing arrow keys moves the submarine located at the top left corner.

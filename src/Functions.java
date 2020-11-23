@@ -1,3 +1,4 @@
+import java.awt.*;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -91,6 +92,8 @@ final class Functions
    private static final int KEYED_BLUE_IDX = 4;
 
    private static final int PROPERTY_KEY = 0;
+
+//   private CursorChar cc = new CursorChar();
 
    public static void loadImages(Scanner in, ImageStore imageStore,
       PApplet screen)
@@ -239,14 +242,14 @@ final class Functions
       {
          Point pt = new Point(Integer.parseInt(properties[CURSOR_COL]),
                  Integer.parseInt(properties[CURSOR_ROW]));
-                 Entity entity = CursorChar.createCursor((properties[CURSOR_ID]),
+
+         CursorChar entity = CursorChar.createCursor((properties[CURSOR_ID]),
                  pt,
                  Integer.parseInt(properties[CURSOR_ACTION_PERIOD]),
                  Integer.parseInt(properties[CURSOR_ANIMATION_PERIOD]),
                  getImageList(imageStore, CURSOR_KEY));
          world.tryAddEntity(entity);
       }
-
       return properties.length == CURSOR_NUM_PROPERTIES;
    }
 

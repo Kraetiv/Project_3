@@ -17,7 +17,7 @@ public final class VirtualWorld
    private static final int TIMER_ACTION_PERIOD = 100;
 
    private static final int VIEW_WIDTH = 1300;
-   private static final int VIEW_HEIGHT = 780;
+   private static final int VIEW_HEIGHT = 820;
    private static final int TILE_WIDTH = 32;
    private static final int TILE_HEIGHT = 32;
    private static final int WORLD_WIDTH_SCALE = 2;
@@ -47,7 +47,7 @@ public final class VirtualWorld
    private WorldModel world;
    private WorldView view;
    private EventScheduler scheduler;
-   private CursorChar cc;
+   static CursorChar cc;
 
    private long next_time;
 
@@ -74,7 +74,7 @@ public final class VirtualWorld
 
       scheduleActions(world, scheduler, imageStore);
 
-      cc = CursorChar.createCursor("cursor", new Point(0,0), -6, -6,
+      cc = CursorChar.createCursor("cursor", new Point(0,0), 0, 0,
               Functions.getImageList(imageStore,"cursor"));
       //cc.spawn(new Point(1, 1), world, scheduler, imageStore);
 
@@ -132,7 +132,6 @@ public final class VirtualWorld
          }
          else{
             Point pt = new Point(cc.getPosition().getX(), cc.getPosition().getY());
-            //System.out.println("herehherherhehrehrehr");
             if(key == UP)
             {
                pt.setY(pt.getY() - 1);
@@ -150,8 +149,6 @@ public final class VirtualWorld
                pt.setX(pt.getX() + 1);
             }
          }
-
-         //this.view.shiftView(dx, dy);
       }
    }
 
@@ -168,15 +165,6 @@ public final class VirtualWorld
                  0, 0, Functions.getImageList(imageStore,"turtle") );
 
          turtle.spawn(pressed, world, scheduler, imageStore);
-
-//         Turtle turtle = new Turtle("turtle", new Point(mouseX, mouseY),
-//                 Functions.getImageList(imageStore,"turtle"), 5, 6);
-//
-//         System.out.println("turtle supposed to psawn now?");
-//         world.tryAddEntity(turtle);
-//         System.out.println("is it going here?");
-//         turtle.scheduleActions(scheduler, world, imageStore);
-//         turtle.execute(world, imageStore, scheduler);
 
          view.drawCave(x, y, imageStore);
 //         view.drawNewEntities(x, y, imageStore);

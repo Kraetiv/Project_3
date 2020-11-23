@@ -63,6 +63,7 @@ obstacle obstacle_30_21 30 21
 obstacle obstacle_31_22 31 22
 obstacle obstacle_32_23 32 23
 background sea 0 0
+cursor cursor1 0 0 0
 background sea 1 0
 background sea 2 0
 background sea 3 0
