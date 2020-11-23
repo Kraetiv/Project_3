@@ -74,9 +74,9 @@ public final class VirtualWorld
 
       scheduleActions(world, scheduler, imageStore);
 
-      CursorChar cursor = CursorChar.createCursor("cursor", new Point(0,0), -6, -6,
+      cc = CursorChar.createCursor("cursor", new Point(0,0), -6, -6,
               Functions.getImageList(imageStore,"cursor"));
-      cursor.spawn(new Point(1, 1), world, scheduler, imageStore);
+      cc.spawn(new Point(1, 1), world, scheduler, imageStore);
 
       next_time = System.currentTimeMillis() + TIMER_ACTION_PERIOD;
 
@@ -119,10 +119,16 @@ public final class VirtualWorld
                break;
          }
          System.out.println("ijashdfiouahdsiofh");
+
          Point newPt = new Point(this.cc.getPosition().getX() + dx, this.cc.getPosition().getY() + dy);
          if(!world.isOccupied(newPt))
          {
-            world.moveEntity(this.cc, newPt);
+            world.removeEntity(cc);
+            scheduler.unscheduleAllEvents(cc);
+            cc = CursorChar.createCursor("cursor", newPt,
+                    0, 0, Functions.getImageList(imageStore, "cursor"));
+            world.addEntity(cc);
+            //world.moveEntity(this.cc, newPt);
          }
          else{
             Point pt = new Point(cc.getPosition().getX(), cc.getPosition().getY());
@@ -145,7 +151,7 @@ public final class VirtualWorld
             }
          }
 
-         this.view.shiftView(dx, dy);
+         //this.view.shiftView(dx, dy);
       }
    }
 
