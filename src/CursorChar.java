@@ -3,8 +3,11 @@ import processing.core.PImage;
 import java.util.List;
 import java.util.Optional;
 
-public class CursorChar extends Actions
+public class CursorChar extends Moving
 {
+
+    private static final String QUAKE_KEY = "quake";
+
     private static final int CURSOR_ANIMATION_REPEAT_COUNT = 7;
     private static final String CURSOR_KEY = "cursor";
     private static final int CURSOR_NUM_PROPERTIES = 5;
@@ -13,38 +16,66 @@ public class CursorChar extends Actions
     private static final int CURSOR_ROW = 3;
     private static final int CURSOR_ACTION_PERIOD = 4;
 
-    public CursorChar(String id, Point position,
-                    List<PImage> images, int actionPeriod, int animationPeriod)
-    {
-        super(id, position, images, 0, 0, actionPeriod, animationPeriod);
+    public CursorChar(String id, Point position, List<PImage> images,
+                  int actionPeriod, int animationPeriod){
+        super(id, position, images, actionPeriod, animationPeriod);
     }
 
-    public static CursorChar createCursorChar(String id, Point position,
-                                          List<PImage> images)
+    public static CursorChar createCursor(String id, Point position,
+                                      int actionPeriod, int animationPeriod, List<PImage> images)
     {
-        return new CursorChar(id, position, images, 0, 0);
+        return new CursorChar(id, position, images, actionPeriod, animationPeriod);
+    }
+
+    public boolean moveToCursor(WorldModel world, Entity target, EventScheduler scheduler)
+    {
+        if (Point.adjacent(this.getPosition(), target.getPosition()))
+        {
+            world.removeEntity(target);
+            scheduler.unscheduleAllEvents(target);
+            return true;
+        }
+        else
+        {
+            Point nextPos = this.nextPosition(world, target.getPosition());
+
+            if (!this.getPosition().equals(nextPos))
+            {
+                Optional<Entity> occupant = world.getOccupant(nextPos);
+                if (occupant.isPresent())
+                {
+                    scheduler.unscheduleAllEvents(occupant.get());
+                }
+
+                world.moveEntity(this, nextPos);
+            }
+            return false;
+        }
     }
 
     public void execute(WorldModel world, ImageStore imageStore, EventScheduler scheduler)
     {
-        scheduler.unscheduleAllEvents(this);
-        world.removeEntity(this);
-    }
+        //find nearest Sgrass
+        Optional<Entity> cursorTarget = world.findNearest(this.getPosition(), SGrass.class); //can change this to crab
+        long nextPeriod = this.getActionPeriod();
 
-    public void scheduleActions (EventScheduler scheduler, WorldModel world, ImageStore imageStore) {
+        if (cursorTarget.isPresent())
+        {
+            Point tgtPos = cursorTarget.get().getPosition();
+
+            if (moveToCursor(world, cursorTarget.get(), scheduler))
+            {
+                Entity quake = Quake.createQuake(tgtPos,
+                        Functions.getImageList(imageStore, QUAKE_KEY));
+                world.addEntity(quake);
+                nextPeriod += this.getActionPeriod();
+                ((Quake)quake).scheduleActions(scheduler, world, imageStore);
+            }
+        }
         scheduler.scheduleEvent(this,
-                Animations.createAnimationAction(this, CURSOR_ANIMATION_REPEAT_COUNT),
-                this.getAnimationPeriod());
+                Activities.createActivityAction(this, world, imageStore),
+                nextPeriod);
     }
 
-    public void spawn(Point location, WorldModel world, EventScheduler scheduler, ImageStore imageStore)
-    {
-        CursorChar cursor = createCursorChar(CURSOR_KEY, location, Functions.getImageList(imageStore,"turtle"));
-
-//        Optional<Entity> entity = world.getOccupant(location);
-
-        world.addEntity(cursor);
-        cursor.scheduleActions(scheduler, world, imageStore);
-    }
 
 }

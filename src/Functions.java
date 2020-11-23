@@ -235,7 +235,7 @@ final class Functions
    public static boolean parseCursor(String [] properties, WorldModel world,
                                    ImageStore imageStore)
    {
-      if (properties.length == CURSOR_NUM_PROPERTIES)
+      if (properties.length == FISH_NUM_PROPERTIES)
       {
          Point pt = new Point(Integer.parseInt(properties[CURSOR_COL]),
                  Integer.parseInt(properties[CURSOR_ROW]));

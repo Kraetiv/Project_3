@@ -73,15 +73,15 @@ final class WorldView
       }
    }
 
-   public void drawNewEntities(int x, int y, ImageStore imageStore)
-   {
-      List<PImage> turtImg = Functions.getImageList(imageStore,"turtle");
-
-      world.createTurtles(x, y, viewport,turtImg);
-
-      drawEntities();
-
-   }
+//   public void drawNewEntities(int x, int y, ImageStore imageStore)
+//   {
+//      List<PImage> turtImg = Functions.getImageList(imageStore,"turtle");
+//
+//      world.createTurtles(x, y, viewport,turtImg);
+//
+//      drawEntities();
+//
+//   }
 
    public void drawCave(int x, int y, ImageStore imageStore)
    {
