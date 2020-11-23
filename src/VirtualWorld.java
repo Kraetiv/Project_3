@@ -49,6 +49,7 @@ public final class VirtualWorld
    private EventScheduler scheduler;
 
    private long next_time;
+   private CursorChar cc;
 
    public void settings()
    {
@@ -113,7 +114,32 @@ public final class VirtualWorld
                dx = 1;
                break;
          }
-         this.view.shiftView(dx, dy);
+         Point newPt = new Point(this.cc.getPosition().getX() + dx, this.cc.getPosition().getY() + dy);
+         if(!world.isOccupied(newPt))
+         {
+            world.moveEntity(this.cc, newPt);
+         }
+         else{
+            Point pt = new Point(cc.getPosition().getX(), cc.getPosition().getY());
+            if(key == UP)
+            {
+               pt.setY(pt.getY() - 1);
+            }
+            if(key == DOWN)
+            {
+               pt.setY(pt.getY() + 1);
+            }
+            if(key == LEFT)
+            {
+               pt.setX(pt.getX() - 1);
+            }
+            if(key == RIGHT)
+            {
+               pt.setX(pt.getX() + 1);
+            }
+         }
+
+//         this.view.shiftView(dx, dy);
       }
    }
 
@@ -128,16 +154,8 @@ public final class VirtualWorld
          Point pressed = view.getViewport().viewportToWorld(x, y);
          Turtle turtle = Turtle.createTurtle("turtle", new Point(mouseX, mouseY),
                  0, 0, Functions.getImageList(imageStore,"turtle") );
-
          turtle.spawn(pressed, world, scheduler, imageStore);
-//         Turtle turtle = new Turtle("turtle", new Point(mouseX, mouseY),
-//                 Functions.getImageList(imageStore,"turtle"), 5, 6);
-//
-//         System.out.println("turtle supposed to psawn now?");
-//         world.tryAddEntity(turtle);
-//         System.out.println("is it going here?");
-//         turtle.scheduleActions(scheduler, world, imageStore);
-//         turtle.execute(world, imageStore, scheduler);
+
 
          view.drawCave(x, y, imageStore);
 //         view.drawNewEntities(x, y, imageStore);
