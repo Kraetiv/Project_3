@@ -209,6 +209,7 @@ final class Functions
             case SHARK_KEY:
                return parseShark(properties, world, imageStore);
             case TURTLE_KEY:
+               System.out.println("Yeet this Sheet");
                return parseTurtle(properties, world, imageStore);
 
 
@@ -262,7 +263,8 @@ final class Functions
    {
       if (properties.length == SHARK_NUM_PROPERTIES)
       {
-         Point pt = new Point(Integer.parseInt(properties[SHARK_COL]),
+         Point pt = new Point(
+                 Integer.parseInt(properties[SHARK_COL]),
                  Integer.parseInt(properties[SHARK_ROW]));
          Entity entity = OctoNotFull.createOctoNotFull(properties[SHARK_ID],
                  Integer.parseInt(properties[SHARK_LIMIT]),
@@ -285,7 +287,9 @@ final class Functions
                  Integer.parseInt(properties[TURTLE_COL]),
                  Integer.parseInt(properties[TURTLE_ROW]));
          Entity entity = Turtle.createTurtle(properties[TURTLE_ID],
-                 pt, TURTLE_ACTION_PERIOD, TURTLE_ANIMATION_PERIOD,
+                 pt,
+                 Integer.parseInt(properties[TURTLE_ACTION_PERIOD]),
+                 Integer.parseInt(properties[TURTLE_ANIMATION_PERIOD]),
                  getImageList(imageStore, TURTLE_KEY));
          world.tryAddEntity(entity);
       }

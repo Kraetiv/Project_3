@@ -185,7 +185,7 @@ final class WorldModel
          System.out.println("its not spawning correctly!");
          throw new IllegalArgumentException("position occupied");
       }
-
+      System.out.println(" Supposed to spawn!");
       this.addEntity(entity);
    }
 
@@ -231,7 +231,7 @@ final class WorldModel
 
       if(withinBounds(turt))
       {
-         setBackgroundCell(turt, new Background("turtle", imageList));
+         setOccupancyCell(turt, Turtle.createTurtle("turtle", turt, 10, 10, imageList));
       }
    }
 }

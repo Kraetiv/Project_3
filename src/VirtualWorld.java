@@ -124,12 +124,23 @@ public final class VirtualWorld
          int x = newEvent.getX()/ TILE_WIDTH;
          int y = newEvent.getY()/ TILE_HEIGHT;
 
-         Turtle turtle = new Turtle("turtle", new Point(mouseX, mouseY),
-                 Functions.getImageList(imageStore,"turtle"), 5, 6);
-         world.addEntity(turtle);
-         turtle.scheduleActions(scheduler, world, imageStore);
 
-         view.drawCave(x, y, imageStore);
+         Point pressed = view.getViewport().viewportToWorld(x, y);
+         Turtle turtle = Turtle.createTurtle("turtle", new Point(mouseX, mouseY),
+                 2, 1, Functions.getImageList(imageStore,"turtle") );
+
+         turtle.spawn(pressed, world, scheduler, imageStore);
+//         Turtle turtle = new Turtle("turtle", new Point(mouseX, mouseY),
+//                 Functions.getImageList(imageStore,"turtle"), 5, 6);
+//
+//         System.out.println("turtle supposed to psawn now?");
+//         world.tryAddEntity(turtle);
+//         System.out.println("is it going here?");
+//         turtle.scheduleActions(scheduler, world, imageStore);
+//         turtle.execute(world, imageStore, scheduler);
+
+         view.drawCave(x + 2, y, imageStore);
+//         view.drawNewEntities(x, y, imageStore);
       }
 
    }

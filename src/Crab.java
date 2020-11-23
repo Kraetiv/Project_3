@@ -31,16 +31,6 @@ public class Crab extends Moving{
 
         AStarPathingStrategy astar = new AStarPathingStrategy();
 
-
-//        Function<Point, Stream<Point>> getNeighbors = (start) -> {
-//            List<Point> potentialNeighbors = new ArrayList<>();
-//            potentialNeighbors.add(new Point(start.x + 1, start.y));
-//            potentialNeighbors.add(new Point(start.x, start.y + 1));
-//            potentialNeighbors.add(new Point(start.x - 1, start.y));
-//            potentialNeighbors.add(new Point(start.x, start.y -1));
-//            return (Stream<Point>) potentialNeighbors;
-//        };
-
         List<Point> strat = astar.computePath(this.getPosition(),
                 destPos, x -> !world.isOccupied(x) && world.withinBounds(x),
                 Point::adjacent,

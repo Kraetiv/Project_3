@@ -75,21 +75,9 @@ final class WorldView
 
    public void drawNewEntities(int x, int y, ImageStore imageStore)
    {
-      List<PImage> caveImage = Functions.getImageList(imageStore,"cave");
+      List<PImage> turtImg = Functions.getImageList(imageStore,"turtle");
 
-
-//      world.drawCave(0, 10, viewport, imageList); //fix this spawn
-
-//      world.drawTurtles(x+1, y, viewport, imageList2); //draws turtles whereever mouse cliked, maybe change
-//      world.drawTurtles(x-1, y, viewport, imageList2);
-//      world.drawTurtles(x, y+1, viewport, imageList2);
-//      world.drawTurtles(x, y-1, viewport, imageList2);
-//      world.drawTurtles(x+1, y+1, viewport, imageList2);
-//      world.drawTurtles(x-1, y+1, viewport, imageList2);
-//      world.drawTurtles(x+1, y-1, viewport, imageList2);
-//      world.drawTurtles(x-1, y-1, viewport, imageList2);
-
-      world.createCave(x, y, viewport, caveImage);
+      world.createTurtles(x, y, viewport,turtImg);
 
       drawEntities();
 
@@ -100,6 +88,8 @@ final class WorldView
       List<PImage> imageList = Functions.getImageList(imageStore,"cave");
 
       world.createCave(x, y, viewport, imageList);
+
+      drawEntities();
    }
 
 
@@ -107,5 +97,10 @@ final class WorldView
    {
       drawBackground();
       drawEntities();
+   }
+
+   public Viewport getViewport()
+   {
+      return viewport;
    }
 }
