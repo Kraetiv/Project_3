@@ -127,7 +127,7 @@ public final class VirtualWorld
 
          Point pressed = view.getViewport().viewportToWorld(x, y);
          Turtle turtle = Turtle.createTurtle("turtle", new Point(mouseX, mouseY),
-                 2, 1, Functions.getImageList(imageStore,"turtle") );
+                 0, 0, Functions.getImageList(imageStore,"turtle") );
 
          turtle.spawn(pressed, world, scheduler, imageStore);
 //         Turtle turtle = new Turtle("turtle", new Point(mouseX, mouseY),
@@ -139,7 +139,7 @@ public final class VirtualWorld
 //         turtle.scheduleActions(scheduler, world, imageStore);
 //         turtle.execute(world, imageStore, scheduler);
 
-         view.drawCave(x + 2, y, imageStore);
+         view.drawCave(x, y, imageStore);
 //         view.drawNewEntities(x, y, imageStore);
       }
 
