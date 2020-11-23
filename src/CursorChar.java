@@ -53,27 +53,27 @@ public class CursorChar extends Moving
 
     public void execute(WorldModel world, ImageStore imageStore, EventScheduler scheduler)
     {
-        //find nearest Sgrass
-        Optional<Entity> cursorTarget = world.findNearest(this.getPosition(), SGrass.class); //can change this to crab
+        // want it to spawn instead of moving
+//        Optional<Entity> cursorTarget = world.findNearest(this.getPosition(), SGrass.class); //can change this to crab
         long nextPeriod = this.getActionPeriod();
-
-        if (cursorTarget.isPresent())
-        {
-            Point tgtPos = cursorTarget.get().getPosition();
-
-            if (moveToCursor(world, cursorTarget.get(), scheduler))
-            {
-                Entity quake = Quake.createQuake(tgtPos,
-                        Functions.getImageList(imageStore, QUAKE_KEY));
-                world.addEntity(quake);
-                nextPeriod += this.getActionPeriod();
-                ((Quake)quake).scheduleActions(scheduler, world, imageStore);
-            }
-        }
+//
+//        if (cursorTarget.isPresent())
+//        {
+//            Point tgtPos = cursorTarget.get().getPosition();
+//
+//            if (moveToCursor(world, cursorTarget.get(), scheduler))
+//            {
+//                Entity quake = Quake.createQuake(tgtPos,
+//                        Functions.getImageList(imageStore, QUAKE_KEY));
+//                world.addEntity(quake);
+//                nextPeriod += this.getActionPeriod();
+//                ((Quake)quake).scheduleActions(scheduler, world, imageStore);
+//            }
+//        }
         scheduler.scheduleEvent(this,
                 Activities.createActivityAction(this, world, imageStore),
                 nextPeriod);
-        spawn(new Point(0,0), world, scheduler, imageStore);
+//        spawn(new Point(0,0), world, scheduler, imageStore);
     }
 
     public void spawn(Point location, WorldModel world, EventScheduler scheduler, ImageStore imageStore)
@@ -81,7 +81,7 @@ public class CursorChar extends Moving
         CursorChar cursor = createCursor(CURSOR_KEY, location, CURSOR_ACTION_PERIOD, CURSOR_ANIMATION_PERIOD,
                 Functions.getImageList(imageStore,"cursor"));
 
-        world.tryAddEntity(cursor);
+        world.addEntity(cursor);
         cursor.scheduleActions(scheduler, world, imageStore);
     }
 

@@ -74,6 +74,10 @@ public final class VirtualWorld
 
       scheduleActions(world, scheduler, imageStore);
 
+      CursorChar cursor = CursorChar.createCursor("cursor", new Point(0,0), -6, -6,
+              Functions.getImageList(imageStore,"cursor"));
+      cursor.spawn(new Point(1, 1), world, scheduler, imageStore);
+
       next_time = System.currentTimeMillis() + TIMER_ACTION_PERIOD;
 
       //triggers mouse event
@@ -114,6 +118,7 @@ public final class VirtualWorld
                dx = 1;
                break;
          }
+         System.out.println("ijashdfiouahdsiofh");
          Point newPt = new Point(this.cc.getPosition().getX() + dx, this.cc.getPosition().getY() + dy);
          if(!world.isOccupied(newPt))
          {
@@ -121,6 +126,7 @@ public final class VirtualWorld
          }
          else{
             Point pt = new Point(cc.getPosition().getX(), cc.getPosition().getY());
+            System.out.println("herehherherhehrehrehr");
             if(key == UP)
             {
                pt.setY(pt.getY() - 1);
@@ -139,7 +145,7 @@ public final class VirtualWorld
             }
          }
 
-//         this.view.shiftView(dx, dy);
+         this.view.shiftView(dx, dy);
       }
    }
 

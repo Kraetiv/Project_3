@@ -54,7 +54,7 @@ public class Activities extends Action{
             ((Shark) this.entity).execute(this.world,
                     this.imageStore, scheduler);
         }
-        if(this.entity instanceof CursorChar)
+        if(this.entity instanceof CursorChar) //determines actions
         {
             ((CursorChar) this.entity).execute(this.world,
                     this.imageStore, scheduler);
