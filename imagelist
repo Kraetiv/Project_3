@@ -25,6 +25,7 @@ octo images/s4.bmp 255 255 255 0
 octo images/s5.bmp 255 255 255 0
 obstacle images/rock.bmp
 fish images/fish.bmp 255 255 255 0
+cursor images/cursor.bmp 255 255 255 0
 quake images/quake1.bmp 255 255 255 0
 quake images/quake2.bmp 255 255 255 0
 quake images/quake3.bmp 255 255 255 0
