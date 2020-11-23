@@ -11,7 +11,9 @@ Alex:
 - modifying octo class so that it changes into shark when passing through a cave
 - spawning/changing cave background
 - modifying textures/bmp files
+- adding submarine
 
 1. When the user clicks on the screen, it spawns a cave background on the mouseclick (can repeat this action).
-2. The click also spawns a turtle entity beside it where it eats bacon.
+2. The click also spawns a turtle entity that eats bacon.
 3. If an octopus enters the cave, it turns into a shark that swims faster and eats more fish.
+4. Pressing arrow keys gets the submarine to spawn in.
