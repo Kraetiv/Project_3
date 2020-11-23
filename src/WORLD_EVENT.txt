@@ -1,5 +1,12 @@
 Name: Alex Liang, Bill Chan
 
+Bill:
+- worked on implementing A*/Single-step pathing to entities
+- mouse event that spawns the new mobile entity
+- "world changing" event triggered by mouse click which modifies background image of affected tiles
+
+Alex:
+
 1. When the user clicks on the screen, it spawns a cave background on the mouseclick (can repeat this action).
 2. The click also spawns a turtle entity beside it where it eats bacon at a slower pace.
 3. If an octopus enters the cave, it turns into a shark that swims faster and eats more fish.
