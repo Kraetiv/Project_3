@@ -47,6 +47,7 @@ public final class VirtualWorld
    private WorldModel world;
    private WorldView view;
    private EventScheduler scheduler;
+   private CursorChar cc;
 
    private long next_time;
 
@@ -113,7 +114,32 @@ public final class VirtualWorld
                dx = 1;
                break;
          }
-         this.view.shiftView(dx, dy);
+         Point newPt = new Point(this.cc.getPosition().getX() + dx, this.cc.getPosition().getY() + dy);
+         if(!world.isOccupied(newPt))
+         {
+            world.moveEntity(this.cc, newPt);
+         }
+         else{
+            Point pt = new Point(cc.getPosition().getX(), cc.getPosition().getY());
+            if(key == UP)
+            {
+               pt.setY(pt.getY() - 1);
+            }
+            if(key == DOWN)
+            {
+               pt.setY(pt.getY() + 1);
+            }
+            if(key == LEFT)
+            {
+               pt.setX(pt.getX() - 1);
+            }
+            if(key == RIGHT)
+            {
+               pt.setX(pt.getX() + 1);
+            }
+         }
+
+//         this.view.shiftView(dx, dy);
       }
    }
 
