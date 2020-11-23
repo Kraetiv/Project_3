@@ -157,10 +157,6 @@ public final class VirtualWorld
 
          turtle.spawn(pressed, world, scheduler, imageStore);
 
-//         CursorChar cursor = CursorChar.createCursorChar("cursor-sub", new Point(mouseX + 5, mouseY + 5),
-//                 Functions.getImageList(imageStore,"cursor"));
-//         cursor.spawn(pressed, world, scheduler, imageStore);
-
 //         Turtle turtle = new Turtle("turtle", new Point(mouseX, mouseY),
 //                 Functions.getImageList(imageStore,"turtle"), 5, 6);
 //
