@@ -4,7 +4,8 @@ import java.util.Random;
 
 import processing.core.PImage;
 
-public class Turtle extends Moving{
+public class Turtle extends Moving
+{
     private static final String QUAKE_KEY = "quake";
     private static final String QUAKE_ID = "quake";
 
