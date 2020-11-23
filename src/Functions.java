@@ -67,6 +67,7 @@ final class Functions
    private static final int CURSOR_COL = 2;
    private static final int CURSOR_ROW = 3;
    private static final int CURSOR_ACTION_PERIOD = 4;
+   private static final int CURSOR_ANIMATION_PERIOD = 4;
 
    private static final String TURTLE_KEY = "turtle";
    private static final int TURTLE_NUM_PROPERTIES = 5;
@@ -216,7 +217,6 @@ final class Functions
             case SHARK_KEY:
                return parseShark(properties, world, imageStore);
             case TURTLE_KEY:
-               System.out.println("Yeet this Sheet");
                return parseTurtle(properties, world, imageStore);
             case CURSOR_KEY:
                return parseCursor(properties, world, imageStore);
@@ -235,17 +235,19 @@ final class Functions
    public static boolean parseCursor(String [] properties, WorldModel world,
                                    ImageStore imageStore)
    {
-      if (properties.length == FISH_NUM_PROPERTIES)
+      if (properties.length == CURSOR_NUM_PROPERTIES)
       {
          Point pt = new Point(Integer.parseInt(properties[CURSOR_COL]),
                  Integer.parseInt(properties[CURSOR_ROW]));
-         Entity entity = Fish.createFish(properties[CURSOR_ID],
-                 pt, Integer.parseInt(properties[CURSOR_ACTION_PERIOD]),
+                 Entity entity = CursorChar.createCursor((properties[CURSOR_ID]),
+                 pt,
+                 Integer.parseInt(properties[CURSOR_ACTION_PERIOD]),
+                 Integer.parseInt(properties[CURSOR_ANIMATION_PERIOD]),
                  getImageList(imageStore, CURSOR_KEY));
          world.tryAddEntity(entity);
       }
 
-      return properties.length == FISH_NUM_PROPERTIES;
+      return properties.length == CURSOR_NUM_PROPERTIES;
    }
 
    public static boolean parseBackground(String [] properties,

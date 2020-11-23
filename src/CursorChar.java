@@ -8,21 +8,19 @@ public class CursorChar extends Moving
 
     private static final String QUAKE_KEY = "quake";
 
-    private static final int CURSOR_ANIMATION_REPEAT_COUNT = 7;
     private static final String CURSOR_KEY = "cursor";
     private static final int CURSOR_NUM_PROPERTIES = 5;
     private static final int CURSOR_ID = 1;
     private static final int CURSOR_COL = 2;
     private static final int CURSOR_ROW = 3;
     private static final int CURSOR_ACTION_PERIOD = 4;
+    private static final int CURSOR_ANIMATION_PERIOD = 4;
 
-    public CursorChar(String id, Point position, List<PImage> images,
-                  int actionPeriod, int animationPeriod){
+    public CursorChar(String id, Point position, List<PImage> images, int actionPeriod, int animationPeriod){
         super(id, position, images, actionPeriod, animationPeriod);
     }
 
-    public static CursorChar createCursor(String id, Point position,
-                                      int actionPeriod, int animationPeriod, List<PImage> images)
+    public static CursorChar createCursor(String id, Point position, int actionPeriod, int animationPeriod, List<PImage> images)
     {
         return new CursorChar(id, position, images, actionPeriod, animationPeriod);
     }
@@ -75,7 +73,16 @@ public class CursorChar extends Moving
         scheduler.scheduleEvent(this,
                 Activities.createActivityAction(this, world, imageStore),
                 nextPeriod);
+        spawn(new Point(0,0), world, scheduler, imageStore);
     }
 
+    public void spawn(Point location, WorldModel world, EventScheduler scheduler, ImageStore imageStore)
+    {
+        CursorChar cursor = createCursor(CURSOR_KEY, location, CURSOR_ACTION_PERIOD, CURSOR_ANIMATION_PERIOD,
+                Functions.getImageList(imageStore,"cursor"));
+
+        world.tryAddEntity(cursor);
+        cursor.scheduleActions(scheduler, world, imageStore);
+    }
 
 }
