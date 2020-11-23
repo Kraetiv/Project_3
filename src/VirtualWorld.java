@@ -118,7 +118,7 @@ public final class VirtualWorld
                dx = 1;
                break;
          }
-         System.out.println("ijashdfiouahdsiofh");
+         //System.out.println("ijashdfiouahdsiofh");
 
          Point newPt = new Point(this.cc.getPosition().getX() + dx, this.cc.getPosition().getY() + dy);
          if(!world.isOccupied(newPt))
@@ -132,7 +132,7 @@ public final class VirtualWorld
          }
          else{
             Point pt = new Point(cc.getPosition().getX(), cc.getPosition().getY());
-            System.out.println("herehherherhehrehrehr");
+            //System.out.println("herehherherhehrehrehr");
             if(key == UP)
             {
                pt.setY(pt.getY() - 1);
@@ -168,7 +168,6 @@ public final class VirtualWorld
                  0, 0, Functions.getImageList(imageStore,"turtle") );
 
          turtle.spawn(pressed, world, scheduler, imageStore);
-         world.addEntity(cc);
 
 //         Turtle turtle = new Turtle("turtle", new Point(mouseX, mouseY),
 //                 Functions.getImageList(imageStore,"turtle"), 5, 6);
