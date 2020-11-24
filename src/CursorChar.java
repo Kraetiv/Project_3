@@ -1,5 +1,7 @@
+import processing.core.PApplet;
 import processing.core.PImage;
 
+import java.security.Key;
 import java.util.List;
 import java.util.Optional;
 
@@ -78,11 +80,12 @@ public class CursorChar extends Moving
 
     public void spawn(Point location, WorldModel world, EventScheduler scheduler, ImageStore imageStore)
     {
-        CursorChar cursor = createCursor(CURSOR_KEY, location, CURSOR_ACTION_PERIOD, CURSOR_ANIMATION_PERIOD,
-                Functions.getImageList(imageStore,"cursor"));
+        SGrass newGrass = SGrass.createSgrass("SGrass", location, 0,
+                Functions.getImageList(imageStore,"turtle"));
 
-        world.addEntity(cursor);
-        cursor.scheduleActions(scheduler, world, imageStore);
+        world.addEntity(newGrass);
+        newGrass.execute(world, imageStore, scheduler);
+        newGrass.scheduleActions(scheduler, world, imageStore);
     }
 
 }

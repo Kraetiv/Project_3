@@ -92,10 +92,10 @@ final class WorldView
       world.createCave(x, y - 1, viewport, imageList);
       world.createCave(x + 1, y, viewport, imageList);
       world.createCave(x - 1, y, viewport, imageList);
-      world.createCave(x + 2, y + 2, viewport, imageList);
-      world.createCave(x - 2, y + 2, viewport, imageList);
-      world.createCave(x + 2, y - 2, viewport, imageList);
-      world.createCave(x - 2, y - 2, viewport, imageList);
+//      world.createCave(x + 2, y + 2, viewport, imageList);
+//      world.createCave(x - 2, y + 2, viewport, imageList);
+//      world.createCave(x + 2, y - 2, viewport, imageList);
+//      world.createCave(x - 2, y - 2, viewport, imageList);
 //      world.createCave(x, y, viewport, imageList);
 
       drawEntities();

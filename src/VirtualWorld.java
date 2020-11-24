@@ -1,3 +1,4 @@
+import java.awt.datatransfer.SystemFlavorMap;
 import java.awt.event.MouseEvent;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -76,7 +77,6 @@ public final class VirtualWorld
 
       cc = CursorChar.createCursor("cursor", new Point(0,0), 0, 0,
               Functions.getImageList(imageStore,"cursor"));
-      //cc.spawn(new Point(1, 1), world, scheduler, imageStore);
 
       next_time = System.currentTimeMillis() + TIMER_ACTION_PERIOD;
 
@@ -118,7 +118,7 @@ public final class VirtualWorld
                dx = 1;
                break;
          }
-         //System.out.println("ijashdfiouahdsiofh");
+         System.out.println("ijashdfiouahdsiofh");
 
          Point newPt = new Point(this.cc.getPosition().getX() + dx, this.cc.getPosition().getY() + dy);
          if(!world.isOccupied(newPt))
@@ -130,10 +130,26 @@ public final class VirtualWorld
             world.addEntity(cc);
             //world.moveEntity(this.cc, newPt);
          }
+         else if(key == ' ') //not complete yet
+         {
+            System.out.println("Spawning now!");
+            SGrass newGrass = SGrass.createSgrass("SGrass", new Point(cc.getPosition().getX(), cc.getPosition().getY()),
+                    0, Functions.getImageList(imageStore,"turtle"));
+            if(!world.isOccupied(newPt))
+            {
+               world.addEntity(newGrass);
+               newGrass.execute(world, imageStore, scheduler);
+               newGrass.scheduleActions(scheduler, world, imageStore);
+            }
+
+//            Point sPt = view.getViewport().viewportToWorld(newPt.getX(), newPt.getY());
+//            cc.spawn(sPt, world, scheduler, imageStore);
+         }
          else{
             Point pt = new Point(cc.getPosition().getX(), cc.getPosition().getY());
             if(key == UP)
             {
+               System.out.println("hahahahahah");
                pt.setY(pt.getY() - 1);
             }
             if(key == DOWN)
@@ -166,8 +182,9 @@ public final class VirtualWorld
 
          turtle.spawn(pressed, world, scheduler, imageStore);
 
+//         SGrass newGrass = SGrass.createSgrass("SGrass", new Point(mouseX, mouseY), );
+
          view.drawCave(x, y, imageStore);
-//         view.drawNewEntities(x, y, imageStore);
       }
 
    }
