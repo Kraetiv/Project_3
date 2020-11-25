@@ -59,6 +59,11 @@ public class Activities extends Action{
             ((CursorChar) this.entity).execute(this.world,
                     this.imageStore, scheduler);
         }
+        if(this.entity instanceof Bacon) //determines actions
+        {
+            ((Bacon) this.entity).execute(this.world,
+                    this.imageStore, scheduler);
+        }
     }
 
 }

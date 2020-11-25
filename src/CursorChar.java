@@ -58,34 +58,11 @@ public class CursorChar extends Moving
         // want it to spawn instead of moving
 //        Optional<Entity> cursorTarget = world.findNearest(this.getPosition(), SGrass.class); //can change this to crab
         long nextPeriod = this.getActionPeriod();
-//
-//        if (cursorTarget.isPresent())
-//        {
-//            Point tgtPos = cursorTarget.get().getPosition();
-//
-//            if (moveToCursor(world, cursorTarget.get(), scheduler))
-//            {
-//                Entity quake = Quake.createQuake(tgtPos,
-//                        Functions.getImageList(imageStore, QUAKE_KEY));
-//                world.addEntity(quake);
-//                nextPeriod += this.getActionPeriod();
-//                ((Quake)quake).scheduleActions(scheduler, world, imageStore);
-//            }
-//        }
+
         scheduler.scheduleEvent(this,
                 Activities.createActivityAction(this, world, imageStore),
                 nextPeriod);
 //        spawn(new Point(0,0), world, scheduler, imageStore);
-    }
-
-    public void spawn(Point location, WorldModel world, EventScheduler scheduler, ImageStore imageStore)
-    {
-        SGrass newGrass = SGrass.createSgrass("SGrass", location, 0,
-                Functions.getImageList(imageStore,"turtle"));
-
-        world.addEntity(newGrass);
-        newGrass.execute(world, imageStore, scheduler);
-        newGrass.scheduleActions(scheduler, world, imageStore);
     }
 
 }

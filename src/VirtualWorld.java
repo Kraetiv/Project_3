@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 import processing.core.*;
+import java.util.Random;
 
 /*
 VirtualWorld is our main wrapper
@@ -17,8 +18,8 @@ public final class VirtualWorld
 {
    private static final int TIMER_ACTION_PERIOD = 100;
 
-   private static final int VIEW_WIDTH = 1300;
-   private static final int VIEW_HEIGHT = 820;
+   private static final int VIEW_WIDTH = 1280;
+   private static final int VIEW_HEIGHT = 1080;
    private static final int TILE_WIDTH = 32;
    private static final int TILE_HEIGHT = 32;
    private static final int WORLD_WIDTH_SCALE = 2;
@@ -49,6 +50,7 @@ public final class VirtualWorld
    private WorldView view;
    private EventScheduler scheduler;
    static CursorChar cc;
+   Random rand = new Random();
 
    private long next_time;
 
@@ -98,13 +100,12 @@ public final class VirtualWorld
 
    public void keyPressed()
    {
-      if (key == CODED)
-      {
-         int dx = 0;
-         int dy = 0;
+      int dx = 0;
+      int dy = 0;
 
-         switch (keyCode)
-         {
+      if (key == CODED) {
+
+         switch (keyCode) {
             case UP:
                dy = -1;
                break;
@@ -118,54 +119,64 @@ public final class VirtualWorld
                dx = 1;
                break;
          }
-         System.out.println("ijashdfiouahdsiofh");
+//         world.viewport.shiftview look for that
+      }
+//         System.out.println("ijashdfiouahdsiofh");
 
          Point newPt = new Point(this.cc.getPosition().getX() + dx, this.cc.getPosition().getY() + dy);
-         if(!world.isOccupied(newPt))
+         if(!(key == ' ') && !world.isOccupied(newPt))
          {
             world.removeEntity(cc);
             scheduler.unscheduleAllEvents(cc);
             cc = CursorChar.createCursor("cursor", newPt,
                     0, 0, Functions.getImageList(imageStore, "cursor"));
-            world.addEntity(cc);
+            world.addEntity(cc); //adds my submarine
+            System.out.println("heheheheheh");
             //world.moveEntity(this.cc, newPt);
          }
-         else if(key == ' ') //not complete yet
-         {
-            System.out.println("Spawning now!");
-            SGrass newGrass = SGrass.createSgrass("SGrass", new Point(cc.getPosition().getX(), cc.getPosition().getY()),
-                    0, Functions.getImageList(imageStore,"turtle"));
-            if(!world.isOccupied(newPt))
-            {
-               world.addEntity(newGrass);
-               newGrass.execute(world, imageStore, scheduler);
-               newGrass.scheduleActions(scheduler, world, imageStore);
-            }
 
-//            Point sPt = view.getViewport().viewportToWorld(newPt.getX(), newPt.getY());
-//            cc.spawn(sPt, world, scheduler, imageStore);
+         if(key == ' ')
+         {
+            Point loc = new Point(newPt.getX(), newPt.getY() + 1);
+            Bacon newBacon = new Bacon("bacon", loc,
+                    Functions.getImageList(imageStore,"seaGrass"),
+                    10, 10, 0 ,0);
+
+            System.out.println("Spawning now!");
+//            world.addEntity(newBacon);
+
+            if(!world.isOccupied(loc))
+            {
+               System.out.println("but is it really?");
+               world.addEntity(newBacon);
+               newBacon.scheduleActions(scheduler, world, imageStore);
+            }
          }
+
          else{
+            System.out.println("goes here now!");
             Point pt = new Point(cc.getPosition().getX(), cc.getPosition().getY());
-            if(key == UP)
-            {
-               System.out.println("hahahahahah");
-               pt.setY(pt.getY() - 1);
-            }
-            if(key == DOWN)
-            {
-               pt.setY(pt.getY() + 1);
-            }
-            if(key == LEFT)
-            {
-               pt.setX(pt.getX() - 1);
-            }
-            if(key == RIGHT)
-            {
-               pt.setX(pt.getX() + 1);
-            }
+//            if( cc.getPosition().getX() > 0
+//                    && cc.getPosition().getX() < VIEW_WIDTH
+//                    && cc.getPosition().getY() > 0
+//                    && cc.getPosition().getY() < VIEW_HEIGHT
+//            )
+
+               if (key == UP) {
+                  System.out.println("hahahahahah");
+                  pt.setY(pt.getY() - 1);
+               }
+               if (key == DOWN) {
+                  pt.setY(pt.getY() + 1);
+               }
+               if (key == LEFT) {
+                  pt.setX(pt.getX() - 1);
+               }
+               if (key == RIGHT) {
+                  pt.setX(pt.getX() + 1);
+               }
+
          }
-      }
    }
 
    public void mouseEvent(processing.event.MouseEvent newEvent) // for our new entity, creates event
@@ -175,12 +186,17 @@ public final class VirtualWorld
          int x = newEvent.getX()/ TILE_WIDTH;
          int y = newEvent.getY()/ TILE_HEIGHT;
 
+         int random_int = (int)(Math.random() * (3));
 
          Point pressed = view.getViewport().viewportToWorld(x, y);
          Turtle turtle = Turtle.createTurtle("turtle", new Point(mouseX, mouseY),
                  0, 0, Functions.getImageList(imageStore,"turtle") );
 
+         SGrass newGrass = SGrass.createSgrass("Sgrass", new Point(mouseX, mouseY), 0,
+                 Functions.getImageList(imageStore,"seaGrass"));
+
          turtle.spawn(pressed, world, scheduler, imageStore);
+//         newGrass.spawn(new Point(x, y), world, scheduler, imageStore);
 
 //         SGrass newGrass = SGrass.createSgrass("SGrass", new Point(mouseX, mouseY), );
 

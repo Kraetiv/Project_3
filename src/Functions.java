@@ -53,6 +53,13 @@ final class Functions
    private static final int SGRASS_ROW = 3;
    private static final int SGRASS_ACTION_PERIOD = 4;
 
+   private static final String BACON_KEY = "bacon";
+   private static final int BACON_NUM_PROPERTIES  = 5;
+   private static final int BACON_ID = 1;
+   private static final int BACON_COL = 2;
+   private static final int BACON_ROW = 3;
+   private static final int BACON_ACTION_PERIOD = 3;
+
    private static final String SHARK_KEY = "shark";
    private static final int SHARK_NUM_PROPERTIES = 7;
    private static final int SHARK_ID = 1;
@@ -223,6 +230,8 @@ final class Functions
                return parseTurtle(properties, world, imageStore);
             case CURSOR_KEY:
                return parseCursor(properties, world, imageStore);
+            case BACON_KEY:
+               return parseBacon(properties, world, imageStore);
 
          }
       }
@@ -388,6 +397,23 @@ final class Functions
       }
 
       return properties.length == SGRASS_NUM_PROPERTIES;
+   }
+
+   public static boolean parseBacon(String [] properties, WorldModel world,
+                                     ImageStore imageStore)
+   {
+      if (properties.length == BACON_NUM_PROPERTIES)
+      {
+         Point pt = new Point(Integer.parseInt(properties[BACON_COL]),
+                 Integer.parseInt(properties[BACON_ROW]));
+         Entity entity = SGrass.createSgrass(properties[BACON_ID],
+                 pt,
+                 Integer.parseInt(properties[BACON_ACTION_PERIOD]),
+                 getImageList(imageStore, BACON_KEY));
+         world.tryAddEntity(entity);
+      }
+
+      return properties.length == BACON_NUM_PROPERTIES;
    }
 
 }

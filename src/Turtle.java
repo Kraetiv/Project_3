@@ -77,7 +77,9 @@ public class Turtle extends Moving
     public void execute(WorldModel world, ImageStore imageStore, EventScheduler scheduler)
     {
         //find nearest Sgrass
-        Optional<Entity> TurtleTarget = world.findNearest(this.getPosition(), SGrass.class); //can change this to crab
+        Optional<Entity> TurtleTarget = world.findNearest(this.getPosition(), Bacon.class); //can change this to crab
+        Optional<Entity> turtTgt2 = world.findNearest(this.getPosition(), Crab.class);
+
         long nextPeriod = this.getActionPeriod();
 
         if (TurtleTarget.isPresent())
@@ -87,6 +89,19 @@ public class Turtle extends Moving
             if (moveToTurtle(world, TurtleTarget.get(), scheduler))
             {
                 Entity quake = Quake.createQuake(tgtPos,
+                        Functions.getImageList(imageStore, QUAKE_KEY));
+                world.addEntity(quake);
+                nextPeriod += this.getActionPeriod();
+                ((Quake)quake).scheduleActions(scheduler, world, imageStore);
+            }
+        }
+        else if (turtTgt2.isPresent())
+        {
+            Point otherPos = turtTgt2.get().getPosition();
+
+            if (moveToTurtle(world, turtTgt2.get(), scheduler))
+            {
+                Entity quake = Quake.createQuake(otherPos,
                         Functions.getImageList(imageStore, QUAKE_KEY));
                 world.addEntity(quake);
                 nextPeriod += this.getActionPeriod();
