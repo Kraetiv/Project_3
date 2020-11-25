@@ -5,7 +5,7 @@ Bill:
 - mouse event that spawns the new mobile entity
 - "world changing" event triggered by mouse click which modifies background image of affected tiles
 - modifying textures/bmp files
-- adding submarine which moves with arrow keys
+- adding submarine which moves with arrow keys, press spacebar to drop a bacon entity that the turtle will eat
 
 Alex:
 - creating turtle class
