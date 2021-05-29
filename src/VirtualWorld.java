@@ -104,25 +104,18 @@ public final class VirtualWorld
       int dx = 0;
       int dy = 0;
 
-      if (key == CODED) {
-
-         switch (keyCode) {
-            case UP:
-               dy = -1;
-               break;
-            case DOWN:
-               dy = 1;
-               break;
-            case LEFT:
-               dx = -1;
-               break;
-            case RIGHT:
-               dx = 1;
-               break;
-         }
-//         world.viewport.shiftview look for that
+      if(key == 'w'){
+         dy = -1;
       }
-//         System.out.println("ijashdfiouahdsiofh");
+      if(key == 's'){
+         dy = 1;
+      }
+      if(key == 'a'){
+         dx = -1;
+      }
+      if(key == 'd'){
+         dx = 1;
+      }
 
          Point newPt = new Point(this.cc.getPosition().getX() + dx, this.cc.getPosition().getY() + dy);
          if(!(key == ' ') && !world.isOccupied(newPt))
@@ -146,7 +139,6 @@ public final class VirtualWorld
 
             if(!world.isOccupied(loc))
             {
-               System.out.println("but is it really?");
                world.addEntity(newBacon);
                newBacon.scheduleActions(scheduler, world, imageStore);
             }
@@ -167,31 +159,8 @@ public final class VirtualWorld
 
             turtle.spawn(pressed, world, scheduler, imageStore);
 
-            // x from 0 to 30
+            // x from 0 to 39
             // y from 0 to 24
-         }
-
-         else{
-            Point pt = new Point(cc.getPosition().getX(), cc.getPosition().getY());
-//            if( cc.getPosition().getX() > 0
-//                    && cc.getPosition().getX() < VIEW_WIDTH
-//                    && cc.getPosition().getY() > 0
-//                    && cc.getPosition().getY() < VIEW_HEIGHT
-//            )
-
-               if (key == UP) {
-                  pt.setY(pt.getY() - 1);
-               }
-               if (key == DOWN) {
-                  pt.setY(pt.getY() + 1);
-               }
-               if (key == LEFT) {
-                  pt.setX(pt.getX() - 1);
-               }
-               if (key == RIGHT) {
-                  pt.setX(pt.getX() + 1);
-               }
-
          }
    }
 
@@ -207,7 +176,7 @@ public final class VirtualWorld
             rand_y = rand.nextInt(24);
             view.drawCave(rand_x, rand_y, imageStore);
 
-            // x from 0 to 30
+            // x from 0 to 39
             // y from 0 to 24
          }
       }
