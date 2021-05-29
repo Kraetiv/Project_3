@@ -1,5 +1,6 @@
 import processing.core.PImage;
 
+import javax.swing.text.View;
 import java.util.*;
 
 /*
@@ -225,13 +226,11 @@ final class WorldModel
       }
    }
 
-   public void createTurtles(int x, int y, Viewport view, List<PImage> imageList)
-   {
-      Point turt = view.viewportToWorld(x, y);
+   public void createBubbles(int x, int y, Viewport view, List<PImage> imageList){
+      Point bubblePoint = view.viewportToWorld(x, y);
 
-      if(withinBounds(turt))
-      {
-         setOccupancyCell(turt, Turtle.createTurtle("turtle", turt, 10, 10, imageList));
+      if(withinBounds(bubblePoint)){
+         setBackgroundCell(bubblePoint, new Background("bubbles", imageList));
       }
    }
 }

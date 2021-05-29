@@ -92,6 +92,12 @@ final class WorldView
       drawEntities();
    }
 
+   public void createBubbles(int x, int y, ImageStore imageStore){
+      List<PImage> imageList = Functions.getImageList(imageStore, "bubbles");
+      world.createBubbles(x, y, viewport, imageList);
+      drawEntities();
+   }
+
 
    public void drawViewport()
    {

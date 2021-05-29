@@ -2,19 +2,20 @@ Name: Alex Liang, Bill Chan
 
 Bill:
 - worked on implementing A*/Single-step pathing to entities
-- mouse event that spawns the new mobile entity
+- keyboard event that spawns the new mobile entity
 - "world changing" event triggered by mouse click which modifies background image of affected tiles
 - modifying textures/bmp files
-- adding submarine which moves with arrow keys, press spacebar to drop a bacon entity that the turtle will eat
+- adding submarine which moves with "wasd" keys. Press "space" to drop a bacon entity that the turtle will eat
 
 Alex:
 - creating turtle class
 - modifying octo class so that it changes into shark when passing through a cave
-- spawning/changing cave background
+- spawning/changing cave background and bubbles
 - modifying textures/bmp files
-- adding submarine which moves with arrow keys
+- adding submarine which moves with "wasd" keys
 
-1. When the user clicks on the screen, it spawns a cave background on the mouseclick (can repeat this action).
-2. The click also spawns a turtle entity that eats bacon.
+1. When the user clicks on the screen, it spawns 35 caves at random locations. Also spawns bubbles for aesthetic purposes.
+2. Press 't' to spawn a turtle at a random spot.
 3. If an octopus enters the cave, it turns into a shark that swims faster and eats more fish.
-4. Pressing arrow keys moves the submarine located at the top left corner.
+4. Pressing "wasd" keys moves the submarine located at the top left corner.
+5. Pressing "space" will spawn bacon for turtles.

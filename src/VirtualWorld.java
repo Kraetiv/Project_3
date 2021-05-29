@@ -168,16 +168,21 @@ public final class VirtualWorld
    {
       if(newEvent.getAction() == MouseEvent.BUTTON1)
       {
+         Random rand = new Random();
          int rand_x;
          int rand_y;
-         Random rand = new Random();
          for(int i = 1; i <= 35; i++){
             rand_x = rand.nextInt(39);
             rand_y = rand.nextInt(24);
             view.drawCave(rand_x, rand_y, imageStore);
-
             // x from 0 to 39
             // y from 0 to 24
+         }
+
+         for(int i = 1; i <= 25; i++) {
+            rand_x = rand.nextInt(39);
+            rand_y = rand.nextInt(24);
+            view.createBubbles(rand_x, rand_y, imageStore);
          }
       }
    }
