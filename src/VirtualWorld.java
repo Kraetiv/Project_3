@@ -131,7 +131,6 @@ public final class VirtualWorld
             cc = CursorChar.createCursor("cursor", newPt,
                     0, 0, Functions.getImageList(imageStore, "cursor"));
             world.addEntity(cc); //adds my submarine
-            System.out.println("heheheheheh");
             //world.moveEntity(this.cc, newPt);
          }
 
@@ -142,7 +141,6 @@ public final class VirtualWorld
                     Functions.getImageList(imageStore,"seaGrass"),
                     10, 10, 0 ,0);
 
-            System.out.println("Spawning now!");
 //            world.addEntity(newBacon);
 
             if(!world.isOccupied(loc))
