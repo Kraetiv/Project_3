@@ -3,6 +3,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.*;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.List;
 import java.util.Scanner;
 import processing.core.*;
 import java.util.Random;
@@ -130,9 +131,10 @@ public final class VirtualWorld
 
          if(key == ' ')
          {
+            List<PImage> imageList = Functions.getImageList(imageStore, "bacon");
             Point loc = new Point(newPt.getX(), newPt.getY() + 1);
             Bacon newBacon = new Bacon("bacon", loc,
-                    Functions.getImageList(imageStore,"seaGrass"),
+                    imageList,
                     10, 10, 0 ,0);
 
 //            world.addEntity(newBacon);
@@ -154,8 +156,8 @@ public final class VirtualWorld
             Turtle turtle = Turtle.createTurtle("turtle", new Point(mouseX, mouseY),
                     0, 0, Functions.getImageList(imageStore,"turtle") );
 
-            SGrass newGrass = SGrass.createSgrass("Sgrass", new Point(mouseX, mouseY), 0,
-                    Functions.getImageList(imageStore,"seaGrass"));
+//            SGrass newGrass = SGrass.createSgrass("Sgrass", new Point(mouseX, mouseY), 0,
+//                    Functions.getImageList(imageStore,"seaGrass"));
 
             turtle.spawn(pressed, world, scheduler, imageStore);
 

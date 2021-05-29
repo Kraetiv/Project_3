@@ -100,8 +100,6 @@ final class Functions
 
    private static final int PROPERTY_KEY = 0;
 
-//   private CursorChar cc = new CursorChar();
-
    public static void loadImages(Scanner in, ImageStore imageStore,
       PApplet screen)
    {
