@@ -1,6 +1,6 @@
 import java.awt.datatransfer.SystemFlavorMap;
 import java.awt.event.KeyEvent;
-import java.awt.event.MouseEvent;
+import java.awt.event.*;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
@@ -152,21 +152,23 @@ public final class VirtualWorld
             }
          }
 
-         if(key == KeyEvent.VK_ENTER){
-            view.drawCave(0, 0, imageStore);
-            view.drawCave(3, 4, imageStore);
-            view.drawCave(2, 1, imageStore);
-            view.drawCave(25, 24, imageStore);
-            view.drawCave(15, 9, imageStore);
-            view.drawCave(16, 22, imageStore);
-            view.drawCave(11, 10, imageStore);
-            view.drawCave(7, 7, imageStore);
-            view.drawCave(3, 13, imageStore);
-            view.drawCave(33, 9, imageStore);
-            view.drawCave(37, 13, imageStore);
-            view.drawCave(29, 1, imageStore);
+         if(key == 't'){
+            Random rand = new Random();
+            int x = rand.nextInt(39);
+            int y = rand.nextInt(24);
 
 
+            Point pressed = view.getViewport().viewportToWorld(x, y);
+            Turtle turtle = Turtle.createTurtle("turtle", new Point(mouseX, mouseY),
+                    0, 0, Functions.getImageList(imageStore,"turtle") );
+
+            SGrass newGrass = SGrass.createSgrass("Sgrass", new Point(mouseX, mouseY), 0,
+                    Functions.getImageList(imageStore,"seaGrass"));
+
+            turtle.spawn(pressed, world, scheduler, imageStore);
+
+            // x from 0 to 30
+            // y from 0 to 24
          }
 
          else{
@@ -195,29 +197,20 @@ public final class VirtualWorld
 
    public void mouseEvent(processing.event.MouseEvent newEvent) // for our new entity, creates event
    {
-      if(newEvent.getAction() == processing.event.MouseEvent.PRESS)
+      if(newEvent.getAction() == MouseEvent.BUTTON1)
       {
-         int x = newEvent.getX()/ TILE_WIDTH;
-         int y = newEvent.getY()/ TILE_HEIGHT;
+         int rand_x;
+         int rand_y;
+         Random rand = new Random();
+         for(int i = 1; i <= 35; i++){
+            rand_x = rand.nextInt(39);
+            rand_y = rand.nextInt(24);
+            view.drawCave(rand_x, rand_y, imageStore);
 
-         int random_int = (int)(Math.random() * (3));
-
-         Point pressed = view.getViewport().viewportToWorld(x, y);
-         Turtle turtle = Turtle.createTurtle("turtle", new Point(mouseX, mouseY),
-                 0, 0, Functions.getImageList(imageStore,"turtle") );
-
-         SGrass newGrass = SGrass.createSgrass("Sgrass", new Point(mouseX, mouseY), 0,
-                 Functions.getImageList(imageStore,"seaGrass"));
-
-         turtle.spawn(pressed, world, scheduler, imageStore);
-//         newGrass.spawn(new Point(x, y), world, scheduler, imageStore);
-
-//         SGrass newGrass = SGrass.createSgrass("SGrass", new Point(mouseX, mouseY), );
-
-//         view.drawCave(x, y, imageStore);
-
+            // x from 0 to 30
+            // y from 0 to 24
+         }
       }
-
    }
 
    public static Background createDefaultBackground(ImageStore imageStore)
