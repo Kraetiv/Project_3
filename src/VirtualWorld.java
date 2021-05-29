@@ -1,4 +1,5 @@
 import java.awt.datatransfer.SystemFlavorMap;
+import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -151,8 +152,24 @@ public final class VirtualWorld
             }
          }
 
+         if(key == KeyEvent.VK_ENTER){
+            view.drawCave(0, 0, imageStore);
+            view.drawCave(3, 4, imageStore);
+            view.drawCave(2, 1, imageStore);
+            view.drawCave(25, 24, imageStore);
+            view.drawCave(15, 9, imageStore);
+            view.drawCave(16, 22, imageStore);
+            view.drawCave(11, 10, imageStore);
+            view.drawCave(7, 7, imageStore);
+            view.drawCave(3, 13, imageStore);
+            view.drawCave(33, 9, imageStore);
+            view.drawCave(37, 13, imageStore);
+            view.drawCave(29, 1, imageStore);
+
+
+         }
+
          else{
-            System.out.println("goes here now!");
             Point pt = new Point(cc.getPosition().getX(), cc.getPosition().getY());
 //            if( cc.getPosition().getX() > 0
 //                    && cc.getPosition().getX() < VIEW_WIDTH
@@ -161,7 +178,6 @@ public final class VirtualWorld
 //            )
 
                if (key == UP) {
-                  System.out.println("hahahahahah");
                   pt.setY(pt.getY() - 1);
                }
                if (key == DOWN) {
@@ -198,7 +214,8 @@ public final class VirtualWorld
 
 //         SGrass newGrass = SGrass.createSgrass("SGrass", new Point(mouseX, mouseY), );
 
-         view.drawCave(x, y, imageStore);
+//         view.drawCave(x, y, imageStore);
+
       }
 
    }
