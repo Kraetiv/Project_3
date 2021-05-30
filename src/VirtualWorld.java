@@ -104,7 +104,7 @@ public final class VirtualWorld
    {
       int dx = 0;
       int dy = 0;
-         if(key == 'w'){
+         if(key == 'w' || key == 'W'){
          dy = -1;
             if(cc.getPosition().getY() < 1)
             {
@@ -112,7 +112,7 @@ public final class VirtualWorld
             }
          }
 
-         if(key == 's'){
+         if(key == 's' || key == 'S'){
             dy = 1;
             if(cc.getPosition().getY() > 23)
             {
@@ -120,14 +120,14 @@ public final class VirtualWorld
             }
          }
 
-         if(key == 'a'){
+         if(key == 'a' || key == 'A'){
             dx = -1;
             if(cc.getPosition().getX() < 1){
                dx = 0;
             }
          }
 
-         if(key == 'd'){
+         if(key == 'd' || key == 'D'){
             dx = 1;
             if(cc.getPosition().getX() > 38){
                dx = 0;
