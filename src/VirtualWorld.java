@@ -64,7 +64,6 @@ public final class VirtualWorld
    /*
       Processing entry point for "sketch" setup.
    */
-
    public void setup()
    {
       this.imageStore = new ImageStore(
@@ -87,8 +86,6 @@ public final class VirtualWorld
 
       //triggers mouse event
       registerMethod("mouseEvent", this);
-
-
    }
 
    public void draw()
@@ -207,7 +204,7 @@ public final class VirtualWorld
             rand_y = rand.nextInt(24);
             view.createBubbles(rand_x, rand_y, imageStore);
          }
-         unregisterMethod("mouseEvent", this); //allows user to only use mouse 1 once.
+         unregisterMethod("mouseEvent", this);
       }
    }
 
