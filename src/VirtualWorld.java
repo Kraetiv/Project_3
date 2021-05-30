@@ -107,35 +107,39 @@ public final class VirtualWorld
    {
       int dx = 0;
       int dy = 0;
-         if(key == 'w'){
+      if(key == 'w')
+      {
          dy = -1;
-            if(cc.getPosition().getY() < 1)
-            {
-               dy = 0;
-            }
+         if(cc.getPosition().getY() < 1)
+         {
+            dy = 0;
          }
+      }
 
-         if(key == 's'){
-            dy = 1;
-            if(cc.getPosition().getY() > 23)
-            {
-               dy = 0;
-            }
+      if(key == 's')
+      {
+         dy = 1;
+         if(cc.getPosition().getY() > 23)
+         {
+            dy = 0;
          }
+      }
 
-         if(key == 'a'){
-            dx = -1;
-            if(cc.getPosition().getX() < 1){
-               dx = 0;
-            }
+      if(key == 'a')
+      {
+         dx = -1;
+         if(cc.getPosition().getX() < 1){
+            dx = 0;
          }
+      }
 
-         if(key == 'd'){
-            dx = 1;
-            if(cc.getPosition().getX() > 38){
-               dx = 0;
-            }
+      if(key == 'd')
+      {
+         dx = 1;
+         if(cc.getPosition().getX() > 38){
+            dx = 0;
          }
+      }
 //              && cc.getPosition().getY() > 0 && cc.getPosition().getY() < 24
 
 
