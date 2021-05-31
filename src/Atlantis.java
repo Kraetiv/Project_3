@@ -31,5 +31,4 @@ public class Atlantis extends Actions{
                 Animations.createAnimationAction(this, ATLANTIS_ANIMATION_REPEAT_COUNT),
                 this.getAnimationPeriod());
     }
-
 }
